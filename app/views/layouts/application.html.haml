@@ -11,6 +11,13 @@
   %body
     .row
       %h1 Ducking Ninja!
+
+      =render "layouts/shared/flash_messages"
+
+      -unless traveller_signed_in?
+        =link_to("Log In", new_traveller_session_path, :class => :button)
+      -else
+        =link_to("Log Out", destroy_traveller_session_path, :method => :delete, :class => :button)
       =yield
 
     =javascript_include_tag "application"
