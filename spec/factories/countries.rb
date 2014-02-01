@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :country do
-    name "MyString"
-    iso_2 "MyString"
+    name "My Country"
+    iso_2 "MC"
   end
 end
