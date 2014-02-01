@@ -10,10 +10,12 @@
     =csrf_meta_tags
   %body
     =render "layouts/shared/topbar"
+    %hr
     .row
       .large-12.columns
-        %h1 Ducking Ninja!
         =render "layouts/shared/flash_messages"
         =yield
 
     =javascript_include_tag "application"
+
+    =render "layouts/shared/footer"

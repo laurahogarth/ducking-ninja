@@ -2,6 +2,15 @@ DuckingNinja::Application.routes.draw do
 
   root "home#index"
 
+  #Static pages
+  scope "/" do
+    get "about", :to => "home#about", :as => :about
+    get "faq", :to => "home#faq", :as => :faq
+    get "privacy", :to => "home#privacy", :as => :privacy
+    get "terms", :to => "home#terms", :as => :terms    
+  end
+
+
   devise_for :travellers 
   devise_scope :traveller do
     get :login, :to => "devise/sessions#new"
