@@ -2,16 +2,16 @@
 
 FactoryGirl.define do
   factory :holiday do
-    country 1
-    region "MyString"
-    nights 1
-    earliest_date "2014-02-01"
-    latest_date "2014-02-01"
-    budget 1.5
-    ballpark? false
-    adults 1
-    children 1
+    country 
+    region "My Region"
+    nights 4
+    earliest_date Date.current
+    latest_date Date.current + 1.week
+    budget 2000
+    ballpark? true
+    adults 2
+    children 0
     travel? false
-    description "MyText"
+    description "A brief description"
   end
 end
