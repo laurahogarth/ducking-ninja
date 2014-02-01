@@ -4,10 +4,10 @@ DuckingNinja::Application.routes.draw do
 
   #Static pages
   scope "/" do
-    get "about", :to => "home#about", :as => :about
-    get "faq", :to => "home#faq", :as => :faq
-    get "privacy", :to => "home#privacy", :as => :privacy
-    get "terms", :to => "home#terms", :as => :terms    
+    get "about", :to => "static_pages#about", :as => :about
+    get "faq", :to => "static_pages#faq", :as => :faq
+    get "privacy", :to => "static_pages#privacy", :as => :privacy
+    get "terms", :to => "static_pages#terms", :as => :terms    
   end
 
 
