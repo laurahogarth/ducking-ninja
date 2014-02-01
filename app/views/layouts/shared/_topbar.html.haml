@@ -1,0 +1,12 @@
+%nav.top-bar{:data => {:topbar => true }}
+  %ul.title-area
+    %li.name
+      %h1
+        =link_to "Ducking Ninja", root_path 
+    %li.toggle-topbar.menu-icon
+      %a{:href => '#',} Menu
+
+  %section.top-bar-section
+    %ul.right
+      %li.has-form
+        =render 'layouts/shared/login_controls'

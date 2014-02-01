@@ -9,13 +9,11 @@
     =javascript_include_tag "vendor/modernizr"
     =csrf_meta_tags
   %body
+    =render "layouts/shared/topbar"
     .row
-      %h1 Ducking Ninja!
-
-      =render "layouts/shared/flash_messages"
-      =render "layouts/shared/login_controls"
-
-      =yield
+      .large-12.columns
+        %h1 Ducking Ninja!
+        =render "layouts/shared/flash_messages"
+        =yield
 
     =javascript_include_tag "application"
-
