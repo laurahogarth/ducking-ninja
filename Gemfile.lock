@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    ZenTest (4.9.5)
     actionmailer (4.0.1)
       actionpack (= 4.0.1)
       mail (~> 2.5.4)
@@ -27,6 +28,8 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
+    autotest (4.4.6)
+      ZenTest (>= 4.4.1)
     bcrypt-ruby (3.1.2)
     builder (3.1.4)
     coffee-rails (4.0.1)
@@ -141,6 +144,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  autotest
   coffee-rails (~> 4.0.0)
   devise
   factory_girl_rails
