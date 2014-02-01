@@ -2,6 +2,8 @@ DuckingNinja::Application.routes.draw do
 
   root "home#index"
 
+  resources :holidays
+
   #Static pages
   scope "/" do
     get "about", :to => "static_pages#about", :as => :about

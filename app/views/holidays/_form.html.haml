@@ -1,0 +1,48 @@
+= form_for @holiday do |f|
+  - if @holiday.errors.any?
+    .panel.callout
+      %h3.subheader= "#{pluralize(@holiday.errors.count, "error")} prohibited this holiday from being saved:"
+      %ul
+        - @holiday.errors.full_messages.each do |msg|
+          %li= msg
+ 
+  %fieldset
+    %legend Destination
+    = f.label :country
+    = f.collection_select(:country_id, ALL_COUNTRIES, :id, :name, :prompt => true)
+    = f.label :region
+    = f.text_field :region, :placeholder => "Optional"
+
+  %fieldset
+    %legend When
+    = f.label :nights
+    = f.number_field :nights
+    = f.label :earliest_date
+    = f.date_select :earliest_date
+    = f.label :latest_date
+    = f.date_select :latest_date
+
+  %fieldset
+    %legend Budget
+    = f.label :budget
+    = f.text_field :budget
+    = f.label :ballpark?
+    = f.check_box :ballpark?
+
+  %fieldset
+    %legend Who is going?
+    = f.label :adults
+    = f.number_field :adults
+    = f.label :children
+    = f.number_field :children
+
+  %fieldset
+    %legend Miscellaneous Details
+    = f.label :travel?
+    = f.check_box :travel?
+    %br
+    = f.label :description
+    = f.text_area :description, :placeholder => "Optional"
+  
+  = f.submit 'Save', :class => :button
+  = link_to 'Cancel', holidays_path, :class => :button

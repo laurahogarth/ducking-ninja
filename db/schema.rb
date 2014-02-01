@@ -11,11 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140201161252) do
+ActiveRecord::Schema.define(version: 20140201172009) do
 
   create_table "countries", force: true do |t|
     t.string   "name"
     t.string   "iso_2"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "holidays", force: true do |t|
+    t.integer  "traveller_id"
+    t.integer  "country_id"
+    t.string   "region"
+    t.integer  "nights"
+    t.date     "earliest_date"
+    t.date     "latest_date"
+    t.float    "budget"
+    t.boolean  "ballpark?",     default: true
+    t.integer  "adults",        default: 2
+    t.integer  "children",      default: 0
+    t.boolean  "travel?",       default: true
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
