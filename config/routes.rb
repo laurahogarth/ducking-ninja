@@ -11,6 +11,7 @@ DuckingNinja::Application.routes.draw do
   end
 
 
+  #Users
   devise_for :travellers 
   devise_scope :traveller do
     get :login, :to => "devise/sessions#new"
