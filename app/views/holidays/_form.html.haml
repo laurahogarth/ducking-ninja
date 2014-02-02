@@ -16,33 +16,47 @@
   %fieldset
     %legend When
     = f.label :nights
-    = f.number_field :nights
-    = f.label :earliest_date
-    = f.date_select :earliest_date
-    = f.label :latest_date
-    = f.date_select :latest_date
+    = f.number_field :nights, :min => 1, :max => 9999
+    .row
+      .small-5.large-5.columns
+        = f.label :earliest_date, "Earliest date you would like to depart"
+        = f.date_field :earliest_date
+      .small-5.large-5.columns
+        = f.label :latest_date, "Latest date you would like to get back"
+        = f.date_field :latest_date
 
   %fieldset
     %legend Budget
     = f.label :budget
-    = f.text_field :budget
-    = f.label :ballpark
-    = f.check_box :ballpark
+    .row.collapse
+      .small-1.large-1.columns
+        %span.prefix &pound;
+      .small-11.large-11.columns
+        = f.number_field :budget, :step => 100
+
+    = f.radio_button(:ballpark, 0, :checked => !@holiday.ballpark?  ) 
+    = f.label :ballpark_0, "This budget represents the absolute maximum I want to pay."
+    %br
+    = f.radio_button(:ballpark, 1, :checked => @holiday.ballpark? )
+    = f.label :ballpark_1, "This budget represents a ballpark figure."
+    .row
+      .small-1.large-1.columns
+        = f.check_box :include_travel
+      .small-11.large-11.columns
+        = f.label :include_travel, "Check this box if you also require travel"
+    
 
   %fieldset
     %legend Who is going?
     = f.label :adults
     = f.number_field :adults
-    = f.label :children
+    = f.label :children, "Children (0-17)"
     = f.number_field :children
 
   %fieldset
     %legend Miscellaneous Details
-    = f.label :include_travel
-    = f.check_box :include_travel
-    %br
     = f.label :description
-    = f.text_area :description, :placeholder => "Optional"
+    = f.text_area :description, :placeholder => "Optional", :style => "height:150px;"
   
   = f.submit 'Save', :class => :button
   = link_to 'Cancel', holidays_path, :class => :button

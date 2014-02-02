@@ -28,6 +28,7 @@ describe Holiday do
       specify("adults >= 0") { subject.adults = -1 }
       specify("children >= 0") { subject.children = -1 }
       specify("nights > 0") { subject.nights = 0 }
+      specify("budget format") { subject.budget = "Foo" }
       specify "has at least one pax" do
         subject.adults = 0
         subject.children = 0
