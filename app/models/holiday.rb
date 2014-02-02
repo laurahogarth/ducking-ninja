@@ -6,6 +6,7 @@ class Holiday < ActiveRecord::Base
   validates_numericality_of :nights, :greater_than => 0
 
   validate :has_at_least_one_pax 
+  validate :has_valid_dates
 
   #ASSOCIATIONS
   belongs_to :country
@@ -15,11 +16,19 @@ class Holiday < ActiveRecord::Base
     ballpark? ? "Ballpark" : "Maximum"
   end
 
-
   private
   def has_at_least_one_pax
     if((adults + children) == 0)
       errors.add(:passengers, "must add up to more than zero")
     end
+  end
+
+  def has_valid_dates
+    if(end_date - start_date < nights)
+      errors.add(:nights, "must not exceed earliest/latest date range")
+    end
+
+    if(end_date > start_date)
+      errors.add(:end_date, "must be after start date")
   end
 end
