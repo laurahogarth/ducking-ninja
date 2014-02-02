@@ -3,6 +3,7 @@
 FactoryGirl.define do
   factory :holiday do
     country 
+    traveller
     region "My Region"
     nights 4
     earliest_date Date.current

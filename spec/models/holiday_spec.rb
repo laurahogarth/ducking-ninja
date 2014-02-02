@@ -22,6 +22,7 @@ describe Holiday do
     context "Invalidatated Model" do
       after(:each) { expect(subject).to_not be_valid }
       specify("country presence") { subject.country_id = nil }
+      specify("traveller presence") { subject.traveller_id = nil }
       specify("earilest_date presence") { subject.earliest_date = nil } 
       specify("latest_date presence") { subject.latest_date = nil } 
       specify("budget_presence") { subject.budget = nil  }

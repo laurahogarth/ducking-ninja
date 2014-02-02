@@ -1,7 +1,7 @@
 class Holiday < ActiveRecord::Base
 
   #VALIDATIONS
-  validates_presence_of :country_id, :earliest_date, :latest_date  
+  validates_presence_of :country_id, :traveller_id, :earliest_date, :latest_date  
   validates_numericality_of :adults, :children, :greater_than_or_equal_to => 0
   validates_numericality_of :nights, :budget, :greater_than => 0
 
