@@ -28,10 +28,10 @@ ActiveRecord::Schema.define(version: 20140201172009) do
     t.date     "earliest_date"
     t.date     "latest_date"
     t.float    "budget"
-    t.boolean  "ballpark?",     default: true
-    t.integer  "adults",        default: 2
-    t.integer  "children",      default: 0
-    t.boolean  "travel?",       default: true
+    t.boolean  "ballpark",       default: true
+    t.integer  "adults",         default: 2
+    t.integer  "children",       default: 0
+    t.boolean  "include_travel", default: true
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"

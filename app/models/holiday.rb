@@ -1,7 +1,7 @@
 class Holiday < ActiveRecord::Base
 
   #VALIDATIONS
-  validates_presence_of :country_id, :nights, :earliest_date, :latest_date, :budget, :ballpark?
+  validates_presence_of :country_id, :earliest_date, :latest_date, :budget  
   validates_numericality_of :adults, :children, :greater_than_or_equal_to => 0
   validates_numericality_of :nights, :greater_than => 0
 
@@ -18,17 +18,21 @@ class Holiday < ActiveRecord::Base
 
   private
   def has_at_least_one_pax
+    return unless adults and children
+
     if((adults + children) == 0)
       errors.add(:passengers, "must add up to more than zero")
     end
   end
 
   def has_valid_dates
-    if(end_date - start_date < nights)
+    return unless earliest_date and latest_date and nights
+
+    if(latest_date - earliest_date < nights)
       errors.add(:nights, "must not exceed earliest/latest date range")
     end
-
-    if(end_date > start_date)
-      errors.add(:end_date, "must be after start date")
+    if(latest_date < earliest_date)
+      errors.add(:latest_date, "must be after earliest date")
+    end
   end
 end

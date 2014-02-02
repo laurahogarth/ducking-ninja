@@ -26,8 +26,8 @@
     %legend Budget
     = f.label :budget
     = f.text_field :budget
-    = f.label :ballpark?
-    = f.check_box :ballpark?
+    = f.label :ballpark
+    = f.check_box :ballpark
 
   %fieldset
     %legend Who is going?
@@ -38,8 +38,8 @@
 
   %fieldset
     %legend Miscellaneous Details
-    = f.label :travel?
-    = f.check_box :travel?
+    = f.label :include_travel
+    = f.check_box :include_travel
     %br
     = f.label :description
     = f.text_area :description, :placeholder => "Optional"

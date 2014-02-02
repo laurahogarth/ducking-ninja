@@ -2,7 +2,8 @@
 
 %p
   %b Country:
-  = @holiday.country
+  = @holiday.country.name 
+  = "(#{@holiday.country.iso_2})"
 %p
   %b Region:
   = @holiday.region
@@ -28,8 +29,8 @@
   %b Children:
   = @holiday.children
 %p
-  %b Travel?:
-  = @holiday.travel?
+  %b Includes Travel?:
+  = @holiday.include_travel?
 %p
   %b Description:
   = @holiday.description

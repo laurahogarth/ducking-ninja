@@ -53,6 +53,6 @@ class HolidaysController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def holiday_params
-      params.require(:holiday).permit(:country_id, :region, :nights, :earliest_date, :latest_date, :budget, :ballpark?, :adults, :children, :travel?, :description)
+      params.require(:holiday).permit(:country_id, :region, :nights, :earliest_date, :latest_date, :budget, :ballpark, :adults, :children, :include_travel, :description)
     end
 end
