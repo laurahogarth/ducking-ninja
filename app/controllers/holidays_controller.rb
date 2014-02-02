@@ -3,7 +3,7 @@ class HolidaysController < ApplicationController
 
   # GET /holidays
   def index
-    @holidays = Holiday.all
+    @holidays = Holiday.all(:include => :country)
   end
 
   # GET /holidays/1

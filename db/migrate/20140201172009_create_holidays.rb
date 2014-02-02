@@ -7,7 +7,7 @@ class CreateHolidays < ActiveRecord::Migration
       t.integer :nights
       t.date :earliest_date
       t.date :latest_date
-      t.float :budget
+      t.integer :budget
       t.boolean :ballpark, :default => true
       t.integer :adults, :default => 2
       t.integer :children, :default => 0

@@ -28,6 +28,10 @@ class Holiday < ActiveRecord::Base
   def has_valid_dates
     return unless earliest_date and latest_date and nights
 
+    [:earliest_date, :latest_date].each do |date_type|
+      errors.add date_type, "can not be in the past" if(self.send(date_type).past?)
+    end
+
     if(latest_date - earliest_date < nights)
       errors.add(:nights, "must not exceed earliest/latest date range")
     end

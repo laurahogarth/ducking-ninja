@@ -29,6 +29,8 @@ describe Holiday do
       specify("children >= 0") { subject.children = -1 }
       specify("nights > 0") { subject.nights = 0 }
       specify("budget format") { subject.budget = "Foo" }
+      specify("earliest_date in future") { subject.earliest_date = Date.current - 1.day }
+      specify("latest_date in future") { subject.latest_date = Date.current - 1.day }
       specify "has at least one pax" do
         subject.adults = 0
         subject.children = 0

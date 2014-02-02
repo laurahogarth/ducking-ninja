@@ -27,31 +27,29 @@
 
   %fieldset
     %legend Budget
-    = f.label :budget
+    = f.label :budget, "What is the budget for your holiday?"
     .row.collapse
       .small-1.large-1.columns
         %span.prefix &pound;
       .small-11.large-11.columns
-        = f.number_field :budget, :step => 100
+        = f.number_field :budget, :min => 1
 
+    = f.radio_button(:ballpark, 1, :checked => @holiday.ballpark? )
+    = f.label :ballpark_1, "This budget represents a ballpark figure."
+    %br
     = f.radio_button(:ballpark, 0, :checked => !@holiday.ballpark?  ) 
     = f.label :ballpark_0, "This budget represents the absolute maximum I want to pay."
     %br
-    = f.radio_button(:ballpark, 1, :checked => @holiday.ballpark? )
-    = f.label :ballpark_1, "This budget represents a ballpark figure."
-    .row
-      .small-1.large-1.columns
-        = f.check_box :include_travel
-      .small-11.large-11.columns
-        = f.label :include_travel, "Check this box if you also require travel"
+    = f.check_box :include_travel
+    = f.label :include_travel, "Check this box if you also require travel"
     
 
   %fieldset
     %legend Who is going?
     = f.label :adults
-    = f.number_field :adults
+    = f.number_field :adults, :min => 0, :max => 9999
     = f.label :children, "Children (0-17)"
-    = f.number_field :children
+    = f.number_field :children, :min => 0, :max => 9999
 
   %fieldset
     %legend Miscellaneous Details
