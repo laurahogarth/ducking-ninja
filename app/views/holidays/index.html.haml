@@ -12,6 +12,7 @@
       %th Budget
       %th Adults
       %th Children
+      %th Traveller Id
       %th{:colspan => 3}
   %tbody
     - @holidays.each do |holiday|
@@ -26,6 +27,7 @@
           =raw "&pound;#{holiday.budget} (#{holiday.budget_type})"
         %td= holiday.adults
         %td= holiday.children
+        %td= holiday.traveller_id
         %td= link_to 'Show', holiday
         %td= link_to 'Edit', edit_holiday_path(holiday)
         %td= link_to 'Destroy', holiday, :method => :delete, :data => { :confirm => 'Are you sure?' }

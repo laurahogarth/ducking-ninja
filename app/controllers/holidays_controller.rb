@@ -1,9 +1,11 @@
 class HolidaysController < ApplicationController
   before_action :set_holiday, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate_traveller!
+
 
   # GET /holidays
   def index
-    @holidays = Holiday.all(:include => :country)
+    @holidays = Holiday.where(:traveller_id => current_traveller.id).includes(:country)
   end
 
   # GET /holidays/1
@@ -48,7 +50,7 @@ class HolidaysController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_holiday
-      @holiday = Holiday.find(params[:id])
+      @holiday = Holiday.where(:id => params[:id], :traveller_id => current_traveller.id).first
     end
 
     # Only allow a trusted parameter "white list" through.
