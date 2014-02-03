@@ -6,7 +6,7 @@ class HolidaysController < ApplicationController
 
   # GET /holidays
   def index
-    @holidays = current_traveller.holidays.includes(:country)
+    @holidays = current_traveller.holidays.includes :country
   end
 
   # GET /holidays/1
@@ -24,7 +24,7 @@ class HolidaysController < ApplicationController
 
   # POST /holidays
   def create
-    @holiday = current_traveller.holidays.build(holiday_params)
+    @holiday = current_traveller.holidays.build holiday_params
 
     if @holiday.save
       redirect_to @holiday, notice: 'Holiday was successfully created.'
@@ -35,7 +35,7 @@ class HolidaysController < ApplicationController
 
   # PATCH/PUT /holidays/1
   def update
-    if @holiday.update(holiday_params)
+    if @holiday.update holiday_params
       redirect_to @holiday, notice: 'Holiday was successfully updated.'
     else
       render action: 'edit'
