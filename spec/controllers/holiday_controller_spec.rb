@@ -37,11 +37,26 @@ describe HolidaysController do
   end
 
   describe "POST 'create'" do
-    it "returns http success" do
+    it "creates the holiday and redirects to the show page" do
       post 'create', :holiday => FactoryGirl.build(:holiday).attributes
-      expect(response).to be_success
+      expect(response).to redirect_to assigns(:holiday)
+      expect(assigns :holiday).to be_persisted
     end
   end
 
-  
+  describe "PATCH 'update'" do
+    it "updates the holiday and redirects to the show page" do
+      patch 'update', :id => @holiday.id, :holiday => @holiday.attributes
+      expect(response).to redirect_to @holiday
+      expect(assigns :holiday).to be_persisted
+    end 
+  end
+
+  describe "DELETE 'destroy'" do
+    it "deletes the holiday and redirects to the holiday index page" do
+      delete 'destroy', :id => @holiday.id
+      expect(response).to redirect_to holidays_url
+      expect(assigns :holiday).to be_destroyed 
+    end
+  end
 end
