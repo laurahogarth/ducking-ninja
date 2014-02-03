@@ -18,7 +18,7 @@ gem 'foundation-rails'
 
 # Authentication/Authorization
 gem 'devise'
-
+gem 'cancan'
 
 # Testing
 group :development, :test do

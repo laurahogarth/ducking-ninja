@@ -1,11 +1,12 @@
 class HolidaysController < ApplicationController
-  before_action :set_holiday, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_traveller!
 
+  load_and_authorize_resource
+  skip_load_resource :only => :create
+  before_filter :authenticate_traveller!
 
   # GET /holidays
   def index
-    @holidays = Holiday.where(:traveller_id => current_traveller.id).includes(:country)
+    @holidays = current_traveller.holidays.includes(:country)
   end
 
   # GET /holidays/1
@@ -23,7 +24,7 @@ class HolidaysController < ApplicationController
 
   # POST /holidays
   def create
-    @holiday = Holiday.new(holiday_params.merge :traveller_id => current_traveller.id)
+    @holiday = current_traveller.holidays.build(holiday_params)
 
     if @holiday.save
       redirect_to @holiday, notice: 'Holiday was successfully created.'
@@ -34,7 +35,7 @@ class HolidaysController < ApplicationController
 
   # PATCH/PUT /holidays/1
   def update
-    if @holiday.update(holiday_params.merge :traveller_id => current_traveller.id)
+    if @holiday.update(holiday_params)
       redirect_to @holiday, notice: 'Holiday was successfully updated.'
     else
       render action: 'edit'
@@ -43,20 +44,13 @@ class HolidaysController < ApplicationController
 
   # DELETE /holidays/1
   def destroy
-    raise StandardError unless @holiday.traveller_id == current_traveller.id
-
     @holiday.destroy
     redirect_to holidays_url, notice: 'Holiday was successfully destroyed.'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_holiday
-      @holiday = Holiday.where(:id => params[:id], :traveller_id => current_traveller.id).first
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def holiday_params
-      params.require(:holiday).permit(:country_id, :region, :nights, :earliest_date, :latest_date, :budget, :ballpark, :adults, :children, :include_travel, :description)
-    end
+  # Only allow a trusted parameter "white list" through.
+  def holiday_params
+    params.require(:holiday).permit(:country_id, :region, :nights, :earliest_date, :latest_date, :budget, :ballpark, :adults, :children, :include_travel, :description)
+  end
 end
