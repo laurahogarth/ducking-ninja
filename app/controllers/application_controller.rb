@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(user)
     if user.is_a? Traveller
       return holidays_url
+    elsif user.is_a? Agent
+      return agent_dashboard_url
     else
       super
     end

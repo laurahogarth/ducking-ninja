@@ -6,6 +6,11 @@ DuckingNinja::Application.routes.draw do
 
   #Static pages
   scope "/" do
+
+    scope :agent do
+      get "home", :to => "agent/home#index", :as => :agent_dashboard
+    end
+
     get "about", :to => "static_pages#about", :as => :about
     get "faq", :to => "static_pages#faq", :as => :faq
     get "privacy", :to => "static_pages#privacy", :as => :privacy
@@ -15,9 +20,16 @@ DuckingNinja::Application.routes.draw do
 
   #Users
   devise_for :travellers 
+  devise_for :agents
+
   devise_scope :traveller do
     get :login, :to => "devise/sessions#new"
     delete :logout, :to => "devise/sessions#destroy"
+  end
+
+  devise_scope :agent do
+    get :agent_login, :to => "devise/sessions#new"
+    delete :agent_logout, :to => "devise/sessions#destroy"
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
