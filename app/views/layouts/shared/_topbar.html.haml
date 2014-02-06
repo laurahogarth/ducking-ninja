@@ -11,6 +11,9 @@
       -if traveller_signed_in?
         %li
           =link_to "Holidays", holidays_path
+      -if agent_signed_in?
+        %li
+          =link_to "Dashboard", dashboard_agent_path(current_agent.id)
       %li
         =link_to "About", about_path
       %li

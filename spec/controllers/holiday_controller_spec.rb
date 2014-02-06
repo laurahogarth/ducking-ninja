@@ -16,9 +16,14 @@ describe HolidaysController do
   end
 
   describe "GET 'show'" do
-    it "returns http success" do
+    it "returns http success if it's your holiday" do
       get 'show', id: @holiday.id
       expect(response).to be_success
+    end
+    it "redirects to home page if it's not your holiday" do
+      someone_elses_holiday = FactoryGirl.create(:holiday)
+      get 'show', id: someone_elses_holiday.id
+      expect(response).to redirect_to root_url
     end
   end
 

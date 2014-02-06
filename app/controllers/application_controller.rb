@@ -23,5 +23,10 @@ class ApplicationController < ActionController::Base
     redirect_to root_url, :alert => exception.message
   end
 
-  alias_method :current_user, :current_traveller
+  def current_user
+    return current_agent if agent_signed_in? 
+    return current_traveller if traveller_signed_in?
+    nil
+  end
+
 end
