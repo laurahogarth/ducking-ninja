@@ -18,7 +18,7 @@ describe Devise::SessionsController do
         @request.env["devise.mapping"] = Devise.mappings[:agent]
         agent = FactoryGirl.create(:agent)
         post 'create', :agent => {:email => agent.email, :password => agent.password }
-        expect(response).to redirect_to agent_dashboard_url
+        expect(response).to redirect_to dashboard_agent_url(agent.id)
       end
     end
 

@@ -17,3 +17,13 @@ unless Country.any?
 else
   puts "Countries already populated!" 
 end
+
+unless Traveller.any?
+  puts "Creating test traveller..."
+  Traveller.create(:email => "test@test.com", :password => "welcome1", :password_confirmation => "welcome1")
+end
+
+unless Agent.any?
+  puts "Creating test agent..."
+  Agent.create(:email => "test@test.com", :password => "welcome1", :password_confirmation => "welcome1")
+end
