@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140204195853) do
+ActiveRecord::Schema.define(version: 20140208104611) do
+
+  create_table "agent_details", force: true do |t|
+    t.integer  "agent_id"
+    t.string   "name"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "town"
+    t.string   "county"
+    t.string   "postcode"
+    t.string   "email"
+    t.string   "main_phone"
+    t.string   "alt_phone"
+    t.string   "fax"
+    t.string   "managers_name"
+    t.string   "opening_hours"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "agents", force: true do |t|
     t.string   "email",                  default: "", null: false

@@ -1,0 +1,41 @@
+%p
+  %b Name:
+  = @agent_detail.name
+%p
+  %b Address 1:
+  = @agent_detail.address_1
+%p
+  %b Address 2:
+  = @agent_detail.address_2
+%p
+  %b Town:
+  = @agent_detail.town
+%p
+  %b County:
+  = @agent_detail.county
+%p
+  %b Postcode:
+  = @agent_detail.postcode
+%p
+  %b Email:
+  = @agent_detail.email
+%p
+  %b Main phone:
+  = @agent_detail.main_phone
+%p
+  %b Alt phone:
+  = @agent_detail.alt_phone
+%p
+  %b Fax:
+  = @agent_detail.fax
+%p
+  %b Managers name:
+  = @agent_detail.managers_name
+%p
+  %b Opening hours:
+  = @agent_detail.opening_hours
+%p
+  %b Description:
+  = @agent_detail.description
+
+= link_to 'Edit', edit_agent_detail_path, :class => :button

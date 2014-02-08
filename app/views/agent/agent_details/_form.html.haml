@@ -1,0 +1,50 @@
+= form_for @agent_detail do |f|
+  - if @agent_detail.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@agent_detail.errors.count, "error")} prohibited this agent_detail from being saved:"
+      %ul
+        - @agent_detail.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :address_1
+    = f.text_field :address_1
+  .field
+    = f.label :address_2
+    = f.text_field :address_2
+  .field
+    = f.label :town
+    = f.text_field :town
+  .field
+    = f.label :county
+    = f.text_field :county
+  .field
+    = f.label :postcode
+    = f.text_field :postcode
+  .field
+    = f.label :email
+    = f.email_field :email
+  .field
+    = f.label :main_phone
+    = f.telephone_field :main_phone
+  .field
+    = f.label :alt_phone
+    = f.telephone_field :alt_phone
+  .field
+    = f.label :fax
+    = f.telephone_field :fax
+  .field
+    = f.label :managers_name
+    = f.text_field :managers_name
+  .field
+    = f.label :opening_hours
+    = f.text_field :opening_hours
+  .field
+    = f.label :description
+    = f.text_area :description, :style => "height:200px;"
+  .actions
+    = f.submit 'Save', :class => :button
+    = link_to 'Cancel', @agent_detail, :class => :button
