@@ -27,6 +27,15 @@ describe AgentDetail do
       specify("fax format") { subject.fax = "AAHKJH183" }
       specify("postcode format") { subject.postcode = "1234566" }
     end
+
+    context "Valid model" do
+      subject { FactoryGirl.create(:agent_detail) }
+      after(:each) { expect(subject).to be_valid }
+
+      # Allow Nils
+      specify("alt phone numeber allows nils") { subject.alt_phone = nil }
+      specify("alt fax allows nils") { subject.fax = nil }
+    end
   end
 
 end
