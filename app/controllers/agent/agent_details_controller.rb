@@ -4,7 +4,6 @@ class Agent::AgentDetailsController < ApplicationController
   before_filter :authenticate_agent!
   before_filter :set_agent_detail
 
-
   # GET agent/agent_details/
   def show
   end
@@ -15,7 +14,7 @@ class Agent::AgentDetailsController < ApplicationController
 
   # PATCH/PUT agent/agent_details/
   def update   
-    if @agent_detail.update(agent_detail_params)
+    if current_agent.agent_detail.update(agent_detail_params)
       redirect_to agent_detail_path, notice: 'Agent detail was successfully updated.'
     else
       render action: 'edit'
@@ -30,6 +29,6 @@ class Agent::AgentDetailsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def agent_detail_params
-    params.require(:agent_detail).permit(:name, :address_1, :address_2, :town, :county, :postcode, :email, :main_phone, :alt_phone, :fax, :managers_name, :opening_hours, :description, :agent_id)
+    params.require(:agent_detail).permit(:name, :address_1, :address_2, :town, :county, :postcode, :email, :main_phone, :alt_phone, :fax, :managers_name, :opening_hours, :description)
   end
 end
