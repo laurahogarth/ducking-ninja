@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     if user.is_a? Traveller
       return holidays_url
     elsif user.is_a? Agent
-      return dashboard_agent_url(user.id)
+      return agent_root_url
     else
       super
     end

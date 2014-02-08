@@ -22,12 +22,10 @@ DuckingNinja::Application.routes.draw do
   ###############
 
   resources :holidays
-  resources :agents, :only => [:dashboard] do
-    member do
-      get :dashboard
-    end
+  namespace :agent do
+    root "home#index"
   end
-  
+   
   ###############
   #
   # Users
