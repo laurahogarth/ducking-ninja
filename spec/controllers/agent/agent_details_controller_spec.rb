@@ -23,7 +23,7 @@ describe Agent::AgentDetailsController do
 
   describe "PATCH 'update'" do
     it "updates the agent details and redirects to the show page" do
-      ad = AgentDetail.new
+      ad = FactoryGirl.create(:agent_detail)
       patch 'update', :agent_detail => ad.attributes
       expect(response).to redirect_to agent_detail_path
     end 
