@@ -26,6 +26,7 @@ describe AgentDetail do
       specify("alt phone format") { subject.alt_phone = "AAHKJH183" }
       specify("fax format") { subject.fax = "AAHKJH183" }
       specify("postcode format") { subject.postcode = "1234566" }
+      specify("webstite format") { subject.website = "billyBollocks!" }
     end
 
     context "Valid model" do

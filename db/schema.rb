@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20140208104611) do
     t.string   "main_phone"
     t.string   "alt_phone"
     t.string   "fax"
+    t.string   "website"
     t.string   "managers_name"
     t.string   "opening_hours"
     t.text     "description"

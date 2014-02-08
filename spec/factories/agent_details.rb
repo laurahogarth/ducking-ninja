@@ -12,6 +12,7 @@ FactoryGirl.define do
     main_phone "0121 123 4567"
     alt_phone "0121 123 4567"
     fax "0121 123 4567"
+    website "http://www.google.com"
     managers_name "MyString"
     opening_hours "MyString"
     description "MyText"

@@ -1,4 +1,4 @@
-= form_for @agent_detail do |f|
+= form_for @agent_detail, :url => agent_detail_path, :method => :patch do |f|
   - if @agent_detail.errors.any?
     .panel.callout
       %h3.subheader= "#{pluralize(@agent_detail.errors.count, "error")} prohibited your details from being saved:"
@@ -37,6 +37,9 @@
     = f.label :fax
     = f.telephone_field :fax, :placeholder => "Optional"
   .field
+    = f.label :website
+    = f.url_field :website, :placeholder => "Optional"
+  .field
     = f.label :managers_name, "Manager's Name"
     = f.text_field :managers_name, :placeholder => "Optional"
   .field
@@ -47,4 +50,4 @@
     = f.text_area :description, :style => "height:200px;", :placeholder => "e.g. how long have you been trading for, what countries or types of holiday do you specialize in?"
   .actions
     = f.submit 'Save', :class => :button
-    = link_to 'Cancel', @agent_detail, :class => :button
+    = link_to 'Cancel', agent_detail_path, :class => :button

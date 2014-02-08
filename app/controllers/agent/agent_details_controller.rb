@@ -24,11 +24,11 @@ class Agent::AgentDetailsController < ApplicationController
   private
 
   def set_agent_detail
-    @agent_detail = current_agent.agent_detail || current_agent.create_agent_detail 
+    @agent_detail = current_agent.agent_detail || current_agent.build_agent_detail 
   end
 
   # Only allow a trusted parameter "white list" through.
   def agent_detail_params
-    params.require(:agent_detail).permit(:name, :address_1, :address_2, :town, :county, :postcode, :email, :main_phone, :alt_phone, :fax, :managers_name, :opening_hours, :description)
+    params.require(:agent_detail).permit(:name, :address_1, :address_2, :town, :county, :postcode, :email, :main_phone, :alt_phone, :fax, :managers_name, :opening_hours, :description, :website)
   end
 end
