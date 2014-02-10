@@ -9,13 +9,9 @@
   %section.top-bar-section
     %ul.right
       -if traveller_signed_in?
-        %li
-          =link_to "Holidays", holidays_path
+        =render "layouts/shared/traveller_topbar"
       -if agent_signed_in?
-        %li
-          =link_to "Dashboard", agent_root_path 
-        %li
-          =link_to "Details", agent_detail_path
+        =render "layouts/shared/agent_topbar"
       %li
         =link_to "About", about_path
       %li

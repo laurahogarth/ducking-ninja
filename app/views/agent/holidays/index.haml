@@ -1,0 +1,28 @@
+%h1 Listing holidays
+
+%table
+  %thead
+    %tr
+      %th Country
+      %th Nights
+      %th Earliest date
+      %th Latest date
+      %th Budget
+      %th Adults
+      %th Children
+      %th
+  %tbody
+    - @holidays.each do |holiday|
+      %tr
+        %td 
+          = holiday.country.iso_2
+          = "(#{holiday.region})" unless holiday.region.blank?
+        %td= holiday.nights
+        %td= holiday.earliest_date
+        %td= holiday.latest_date
+        %td
+          =raw "&pound;#{holiday.budget} (#{holiday.budget_type})"
+        %td= holiday.adults
+        %td= holiday.children
+        %td= link_to 'Show', [:agent, holiday]
+

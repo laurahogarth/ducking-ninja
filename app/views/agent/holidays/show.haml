@@ -1,0 +1,36 @@
+%p
+  %b Country:
+  = @holiday.country.name 
+  = "(#{@holiday.country.iso_2})"
+%p
+  %b Region:
+  = @holiday.region
+%p
+  %b Nights:
+  = @holiday.nights
+%p
+  %b Earliest date:
+  = @holiday.earliest_date
+%p
+  %b Latest date:
+  = @holiday.latest_date
+%p
+  %b Budget:
+  = @holiday.budget
+%p
+  %b Ballpark?:
+  = @holiday.ballpark?
+%p
+  %b Adults:
+  = @holiday.adults
+%p
+  %b Children:
+  = @holiday.children
+%p
+  %b Includes Travel?:
+  = @holiday.include_travel?
+%p
+  %b Description:
+  = @holiday.description
+
+= link_to 'Back', agent_holidays_path
