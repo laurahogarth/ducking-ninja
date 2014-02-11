@@ -1,0 +1,24 @@
+%h1 Listing pitches
+
+%table
+  %tr
+    %th Country
+    %th Min
+    %th Max
+    %th Expertise
+    %th Content
+    %th
+    %th
+    %th
+
+  - @pitches.each do |pitch|
+    %tr
+      %td= pitch.holiday.country.name
+      %td= pitch.min
+      %td= pitch.max
+      %td= pitch.expertise
+      %td= pitch.content
+      %td= link_to 'Show', [:agent, pitch.holiday, pitch]
+      %td= link_to 'Edit', edit_agent_holiday_pitch_path(pitch.holiday, pitch)
+      %td= link_to 'Destroy', [:agent, pitch.holiday, pitch], :method => :delete, :data => { :confirm => 'Are you sure?' }
+

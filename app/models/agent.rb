@@ -5,5 +5,6 @@ class Agent < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :agent_detail
+  has_many :pitches
 
 end

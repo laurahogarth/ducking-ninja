@@ -1,0 +1,16 @@
+%p
+  %b Min:
+  = @pitch.min
+%p
+  %b Max:
+  = @pitch.max
+%p
+  %b Expertise:
+  = @pitch.expertise
+%p
+  %b Content:
+  = @pitch.content
+
+= link_to 'Edit', edit_agent_holiday_pitch_path(@pitch.holiday, @pitch)
+\|
+= link_to 'Back', agent_pitches_path

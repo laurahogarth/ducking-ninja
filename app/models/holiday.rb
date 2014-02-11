@@ -11,6 +11,7 @@ class Holiday < ActiveRecord::Base
   #ASSOCIATIONS
   belongs_to :country
   belongs_to :traveller
+  has_many :pitches
 
   def budget_type
     ballpark? ? "Ballpark" : "Maximum"

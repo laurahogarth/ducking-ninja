@@ -1,6 +1,7 @@
 DuckingNinja::Application.routes.draw do
 
 
+
   ###############
   #
   # Static pages
@@ -27,7 +28,10 @@ DuckingNinja::Application.routes.draw do
   namespace :agent do
     root "home#index"
     resource :agent_details, :only => [:show, :edit, :update], :as => :detail
-    resources :holidays, :only => [:index, :show]
+    resources :holidays, :only => [:index, :show] do
+      resources :pitches, :except => :index
+    end
+    resources :pitches, :only => :index
   end
    
   ###############
