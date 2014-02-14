@@ -52,5 +52,17 @@ describe Holiday do
         end
       end
     end
+
+    describe "Instance Methods" do
+      describe "#summary" do
+        context "2 nights, 1 adult, 2 children, £2000 budget" do
+          it "describes the holiday nicely" do 
+            country = FactoryGirl.create(:country, :name => "Australia")
+            holiday = FactoryGirl.create(:holiday, :nights => 2, :adults => 1, :children => 2, :budget => 2000, :country => country)
+            expect(holiday.summary).to eq("a holiday for 1 adults and 2 children to Australia with a budget of £2000")
+          end
+        end
+      end
+    end
   end
 end
