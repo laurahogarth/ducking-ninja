@@ -1,22 +1,30 @@
 = form_for [:agent, @holiday, @pitch] do |f|
   - if @pitch.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@pitch.errors.count, "error")} prohibited this pitch from being saved:"
+    .panel.callout
+      %h3.subheader= "#{pluralize(@pitch.errors.count, "error")} prohibited this pitch from being saved:"
       %ul
         - @pitch.errors.full_messages.each do |msg|
           %li= msg
 
-  .field
+  %fieldset
+    %legend Your Estimates
     = f.label :min
-    = f.number_field :min
-  .field
+    = f.number_field :min, min: 1
     = f.label :max
-    = f.number_field :max
-  .field
-    = f.label :expertise
-    = f.number_field :expertise
-  .field
-    = f.label :content
+    = f.number_field :max, min: 1
+
+  %fieldset
+    %legend Level of expertise
+    = f.radio_button(:expertise, 0, :checked => (@pitch.expertise == 0 or @pitch.expertise.nil?))
+    = f.label :expertise_0, "Our agency is familiar with this area"
+    %br
+    = f.radio_button(:expertise, 1, :checked => @pitch.expertise == 1)
+    = f.label :expertise_1, "Our agency has expert knowledge of this area"
+    %br
+    = f.radio_button(:expertise, 2, :checked => @pitch.expertise == 2)
+    = f.label :expertise_2, "Our agency specialises in this region"
+  %fieldset
+    %legend Sell Yourself!
     = f.text_area :content
   .actions
     = f.submit 'Save', :class => :button
