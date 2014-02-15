@@ -4,6 +4,7 @@ class Agent::PitchesController < ApplicationController
   skip_load_resource :only => :create
   before_filter :authenticate_agent!
   before_action :set_holiday, :only => [:show, :edit, :update, :new, :create]
+  after_filter :set_expertise!, :only => [:create, :update]
 
   
   # GET agent/pitches
@@ -27,7 +28,6 @@ class Agent::PitchesController < ApplicationController
   # POST agent/holidays/1/pitches
   def create
     @pitch = @holiday.pitches.build(pitch_params.merge(:agent_id => current_agent.id))
-
     if @pitch.save
       redirect_to [:agent, @holiday, @pitch], notice: 'Pitch was successfully created.'
     else
@@ -58,6 +58,10 @@ class Agent::PitchesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def pitch_params
-      params.require(:pitch).permit(:min, :max, :expertise, :content)
+      params.require(:pitch).permit(:min, :max, :content, :expertise)
+    end
+    
+    def set_expertise!
+      @pitch.expertise = params[:expertise] if params[:expertise]
     end
 end

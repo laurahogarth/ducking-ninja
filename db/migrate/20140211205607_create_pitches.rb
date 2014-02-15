@@ -3,7 +3,7 @@ class CreatePitches < ActiveRecord::Migration
     create_table :pitches do |t|
       t.integer :min
       t.integer :max
-      t.integer :expertise
+      t.integer :expertise, default: 0
       t.text :content
       t.references :agent
       t.references :holiday

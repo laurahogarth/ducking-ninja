@@ -8,20 +8,28 @@
   %fieldset
     %legend Your Estimates
     = f.label :min
-    = f.number_field :min, min: 1
+    .row.collapse
+      .small-1.large-1.columns
+        %span.prefix &pound;
+      .small-11.large-11.columns
+        = f.number_field :min, :min => 1
     = f.label :max
-    = f.number_field :max, min: 1
+    .row.collapse
+      .small-1.large-1.columns
+        %span.prefix &pound;
+      .small-11.large-11.columns
+        = f.number_field :max, :min => 2
 
   %fieldset
     %legend Level of expertise
-    = f.radio_button(:expertise, 0, :checked => (@pitch.expertise == 0 or @pitch.expertise.nil?))
-    = f.label :expertise_0, "Our agency is familiar with this area"
+    = f.radio_button :expertise, :familiar, checked: (@pitch.familiar? or @pitch.expertise.nil?)
+    = f.label :expertise_familiar, "Our agency is familiar with this area"
     %br
-    = f.radio_button(:expertise, 1, :checked => @pitch.expertise == 1)
-    = f.label :expertise_1, "Our agency has expert knowledge of this area"
+    = f.radio_button :expertise, :expert, checked: @pitch.expert?
+    = f.label :expertise_expert, "Our agency has expert knowledge of this area"
     %br
-    = f.radio_button(:expertise, 2, :checked => @pitch.expertise == 2)
-    = f.label :expertise_2, "Our agency specialises in this region"
+    = f.radio_button :expertise, :specialist, checked: @pitch.specialist?
+    = f.label :expertise_specialist, "Our agency specialises in this region"
   %fieldset
     %legend Sell Yourself!
     = f.text_area :content

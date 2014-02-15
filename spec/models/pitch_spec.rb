@@ -18,6 +18,14 @@ describe Pitch do
     subject { FactoryGirl.create(:pitch) }
     it("should have a valid factory") { expect(subject).to be_valid }
 
+    context "expertise" do
+      it "should not let people set invalid expertise" do
+        expect { 
+          subject.expertise = "foo"
+        }.to raise_error ArgumentError
+      end
+    end
+
     context "Invalidatated Model" do
       after(:each) { expect(subject).to_not be_valid }
 
@@ -25,11 +33,8 @@ describe Pitch do
       specify("agent presence") { subject.agent_id = nil }
       specify("min presence") { subject.min = nil }
       specify("max presence") { subject.max = nil }
-      specify("expertise presence") { subject.expertise = nil }
       specify("min numericality") { subject.min = "Foo" }
       specify("max numericality") { subject.max = "Foo" }
-      specify("expertise numericality") { subject.expertise = "Foo" }
-      specify("expertise range") { subject.expertise = 3 }
       specify("min > 0") { subject.min = 0 }
       specify("max > 0") { subject.max = 0 }
 

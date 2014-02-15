@@ -4,7 +4,7 @@ FactoryGirl.define do
   factory :pitch do
     min 1000
     max 5000
-    expertise 1
+    expertise :familiar
     content "Some Content!"
     agent
     holiday
