@@ -1,10 +1,6 @@
 = form_for @agent_detail, :url => agent_detail_path, :method => :patch do |f|
-  - if @agent_detail.errors.any?
-    .panel.callout
-      %h3.subheader= "#{pluralize(@agent_detail.errors.count, "error")} prohibited your details from being saved:"
-      %ul
-        - @agent_detail.errors.full_messages.each do |msg|
-          %li= msg
+  
+  =render partial: 'layouts/shared/form_errors', locals: {subject: @agent_detail}  
 
   .field
     = f.label :name

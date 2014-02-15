@@ -13,14 +13,6 @@ class Holiday < ActiveRecord::Base
   belongs_to :traveller
   has_many :pitches
 
-  def budget_type
-    ballpark? ? "Ballpark" : "Maximum"
-  end
-
-  def summary
-    "a holiday for #{adults} adults and #{children} children to #{country.name} with a budget of £#{budget}"
-  end
-
   private
   def has_at_least_one_pax
     return unless adults and children

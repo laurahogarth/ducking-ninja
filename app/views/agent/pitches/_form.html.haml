@@ -1,16 +1,9 @@
 = form_for [:agent, @holiday, @pitch] do |f|
 
   %p
-    You are pitching on 
-    =@holiday.nice_description 
+    ="You are pitching on #{holiday_summary(@holiday)}"
 
-
-  - if @pitch.errors.any?
-    .panel.callout
-      %h3.subheader= "#{pluralize(@pitch.errors.count, "error")} prohibited this pitch from being saved:"
-      %ul
-        - @pitch.errors.full_messages.each do |msg|
-          %li= msg
+  =render partial: 'layouts/shared/form_errors', locals: {subject: @pitch}  
 
   %fieldset
     %legend Your Estimates

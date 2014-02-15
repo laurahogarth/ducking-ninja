@@ -1,0 +1,6 @@
+- if subject.errors.any?
+  .panel.callout
+    %h3.subheader= "#{pluralize(subject.errors.count, "error")} prohibited this form from being submitted:"
+    %ul
+      - subject.errors.full_messages.each do |msg|
+        %li= msg

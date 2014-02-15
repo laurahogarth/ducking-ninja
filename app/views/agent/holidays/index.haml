@@ -21,7 +21,7 @@
         %td= holiday.earliest_date
         %td= holiday.latest_date
         %td
-          =raw "&pound;#{holiday.budget} (#{holiday.budget_type})"
+          =raw "&pound;#{holiday.budget} (#{budget_type(holiday)})"
         %td= holiday.adults
         %td= holiday.children
         %td= link_to 'Show', [:agent, holiday]

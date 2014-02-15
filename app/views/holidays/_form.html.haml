@@ -1,10 +1,5 @@
 = form_for @holiday do |f|
-  - if @holiday.errors.any?
-    .panel.callout
-      %h3.subheader= "#{pluralize(@holiday.errors.count, "error")} prohibited this holiday from being saved:"
-      %ul
-        - @holiday.errors.full_messages.each do |msg|
-          %li= msg
+  =render partial: 'layouts/shared/form_errors', locals: {subject: @holiday}  
  
   %fieldset
     %legend Destination
