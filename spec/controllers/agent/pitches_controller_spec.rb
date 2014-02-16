@@ -20,7 +20,6 @@ describe Agent::PitchesController do
     it "assigns the requested pitch as @pitch" do
       get :show, {:holiday_id => @holiday, :id => @pitch}
       expect(assigns(:pitch)).to eq(@pitch)
-      expect(assigns(:holiday)).to eq(@holiday)
     end
   end
 
