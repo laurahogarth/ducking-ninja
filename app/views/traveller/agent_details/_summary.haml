@@ -1,0 +1,40 @@
+%span
+  %em= @agent_detail.name
+  %br
+%span= @agent_detail.address_1      
+%br
+-unless @agent_detail.address_2.blank?
+  %span= @agent_detail.address_2
+  %br
+-unless @agent_detail.town.blank?
+  %span= @agent_detail.town 
+  %br
+-unless @agent_detail.county.blank?
+  %span= @agent_detail.county 
+  %br
+-unless @agent_detail.postcode.blank?
+  %span= @agent_detail.postcode 
+  %br
+-unless @agent_detail.website.blank?
+  =link_to @agent_detail.website, @agent_detail.website
+  %br
+-unless @agent_detail.main_phone.blank?
+  %label Phone:
+  %span=@agent_detail.main_phone
+  %br
+-unless @agent_detail.alt_phone.blank?
+  %label Alternative Phone:
+  %span=@agent_detail.alt_phone
+  %br
+-unless @agent_detail.fax.blank?
+  %label Fax:
+  %span=@agent_detail.fax
+  %br
+-unless @agent_detail.email.blank?
+  %label Email:
+  %span=@agent_detail.email
+  %br
+-unless @agent_detail.opening_hours.blank?
+  %label Opening Hours:
+  %span=@agent_detail.opening_hours
+  %br

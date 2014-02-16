@@ -1,4 +1,4 @@
-class HolidaysController < ApplicationController
+class Traveller::HolidaysController < ApplicationController
 
   load_and_authorize_resource
   skip_load_resource :only => :create

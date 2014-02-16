@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe HolidaysController do
+describe Traveller::HolidaysController do
   before do
     #Sign in a traveller, create them a holiday
     @traveller = FactoryGirl.create(:traveller)

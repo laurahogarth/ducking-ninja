@@ -1,11 +1,8 @@
-class PitchesController < ApplicationController
+class Traveller::PitchesController < ApplicationController
   load_and_authorize_resource
 
-  def index
-    @pitches = current_traveller.pitches
-  end
-
   def show
+    @agent_detail = @pitch.agent.agent_detail
   end
 
   def update_status

@@ -23,16 +23,16 @@
   %fieldset
     %legend Level of expertise
     = f.radio_button :expertise, :familiar, checked: (@pitch.familiar? or @pitch.expertise.nil?)
-    = f.label :expertise_familiar, "Our agency is familiar with this area"
+    = f.label :expertise_familiar, "Our agency is <em>familiar</em> with this region".html_safe
     %br
     = f.radio_button :expertise, :expert, checked: @pitch.expert?
-    = f.label :expertise_expert, "Our agency has expert knowledge of this area"
+    = f.label :expertise_expert, "Our agency has <em>expert</em> knowledge of this region".html_safe
     %br
     = f.radio_button :expertise, :specialist, checked: @pitch.specialist?
-    = f.label :expertise_specialist, "Our agency specialises in this region"
+    = f.label :expertise_specialist, "Our agency <em>specialises</em> in this region".html_safe
   %fieldset
     %legend Sell Yourself!
-    = f.text_area :content
+    = f.text_area :content, :style => "height: 200px"
   .actions
-    = f.submit 'Save', :class => :button
+    = f.submit 'Save', :class => [:alert, :button]
     = link_to 'Back', agent_pitches_path, :class => :button

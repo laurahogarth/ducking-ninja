@@ -45,5 +45,5 @@
     = f.label :description
     = f.text_area :description, :style => "height:200px;", :placeholder => "e.g. how long have you been trading for, what countries or types of holiday do you specialize in?"
   .actions
-    = f.submit 'Save', :class => :button
+    = f.submit 'Save', :class => [:alert, :button]
     = link_to 'Cancel', agent_detail_path, :class => :button

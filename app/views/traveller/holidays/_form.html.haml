@@ -51,5 +51,5 @@
     = f.label :description
     = f.text_area :description, :placeholder => "Optional", :style => "height:150px;"
   
-  = f.submit 'Save', :class => :button
+  = f.submit 'Save', :class => [:alert, :button]
   = link_to 'Cancel', holidays_path, :class => :button

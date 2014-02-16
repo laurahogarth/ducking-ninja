@@ -1,0 +1,33 @@
+
+%h3 Pitch from #{@agent_detail.name}
+
+.row.collapse
+  .small-6.large-6.columns
+    %ul
+      %li 
+        The agent believes they can meet the requirements for your holiday 
+      %li 
+        The agent has specified a lower-estimate of <em>&pound;#{@pitch.min}</em> 
+      %li
+        The agent has specified an upper-estimate of <em>&pound;#{@pitch.max}</em>. 
+      %li The agent has specified their level of expertise as being "<em>#{@pitch.expertise}</em>".
+  .small-6.large-6.columns
+    .panel
+      =render "traveller/agent_details/summary"
+
+-unless @pitch.content.blank?
+  %blockquote #{@pitch.content}
+
+
+= form_for [@holiday, @pitch], :method => :patch,  :url => update_status_holiday_pitch_path  do |f|
+  %fieldset
+    %legend Reaction
+    = f.radio_button :status, :accepted, checked: (@pitch.accepted? or @pitch.undecided?)
+    = f.label :status_accepted, "This looks good, I will most likely be in touch!"
+    %br
+    = f.radio_button :status, :rejected, checked: @pitch.rejected?
+    = f.label :status_rejected, "This doesn't really meet my requirements, but thank you for your time."
+  .actions
+    = f.submit 'Submit Reaction', :class => [:alert, :button]
+    = link_to 'Ignore for now', @pitch.holiday, :class => :button
+
