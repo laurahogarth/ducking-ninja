@@ -2,12 +2,6 @@ require 'spec_helper'
 
 describe Agent::PitchesController do
 
-  def attributes_for(pitch)
-    attrs = pitch.attributes
-    attrs[:expertise] = "familiar"
-    return attrs
-  end
-
   before do
     @agent = FactoryGirl.create(:agent)
     @holiday = FactoryGirl.create(:holiday)
@@ -50,13 +44,13 @@ describe Agent::PitchesController do
       it "creates a new Pitch" do
         expect {
           @pitch.holiday = FactoryGirl.create(:holiday)
-          post :create, {:holiday_id => @holiday, :pitch => attributes_for(@pitch) }
+          post :create, {:holiday_id => @holiday, :pitch => FactoryGirl.attributes_for(:pitch) }
         }.to change(Pitch, :count).by(1)
       end
 
       it "assigns a newly created pitch as @pitch and redirects" do
         @pitch.holiday = FactoryGirl.create(:holiday)
-        post :create, {:holiday_id => @holiday, :pitch => attributes_for(@pitch) }
+        post :create, {:holiday_id => @holiday, :pitch => FactoryGirl.attributes_for(:pitch) }
         expect(assigns(:pitch)).to be_persisted
         expect(response).to redirect_to([:agent, @holiday, assigns[:pitch]])
       end
@@ -67,7 +61,7 @@ describe Agent::PitchesController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested pitch" do
-        put :update, { :holiday_id => @holiday, :id => @pitch, :pitch => attributes_for(@pitch) }
+        put :update, { :holiday_id => @holiday, :id => @pitch, :pitch => FactoryGirl.attributes_for(:pitch) }
         expect(assigns[:pitch]).to be_persisted
       end
     end

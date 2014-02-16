@@ -3,13 +3,11 @@ class Agent::PitchesController < ApplicationController
   load_and_authorize_resource
   skip_load_resource :only => :create
   before_filter :authenticate_agent!
-  before_action :set_holiday, :only => [:show, :edit, :update, :new, :create]
-  after_filter :set_expertise!, :only => [:create, :update]
-
+  before_action :set_holiday, :only => [:edit, :update, :new, :create]
   
   # GET agent/pitches
   def index
-    @pitches = current_agent.pitches
+    @pitches = current_agent.pitches.includes(:holiday => :country)
   end
 
   # GET agent/holidays/1/pitches/1
@@ -61,7 +59,4 @@ class Agent::PitchesController < ApplicationController
       params.require(:pitch).permit(:min, :max, :content, :expertise)
     end
     
-    def set_expertise!
-      @pitch.expertise = params[:expertise] if params[:expertise]
-    end
 end
