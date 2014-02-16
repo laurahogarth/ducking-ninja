@@ -23,7 +23,9 @@ DuckingNinja::Application.routes.draw do
 
   resources :pitches, :only => :index
   resources :holidays do
-    resources :pitches, :only => :show
+    resources :pitches, :only => :show do
+      patch "update_status", :on => :member
+    end
   end
   
 

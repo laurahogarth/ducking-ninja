@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Pitch do
   describe "Attributes and Associations" do
     context "Attributes" do
-      [:min, :max, :expertise, :content].each  do |method|
+      [:min, :max, :expertise, :status, :content].each  do |method|
         it { should respond_to method }
       end 
     end
@@ -16,12 +16,21 @@ describe Pitch do
 
   describe "Validations" do
     subject { FactoryGirl.create(:pitch) }
+
     it("should have a valid factory") { expect(subject).to be_valid }
 
     context "expertise" do
       it "should not let people set invalid expertise" do
         expect { 
           subject.expertise = "foo"
+        }.to raise_error ArgumentError
+      end
+    end
+
+    context "status" do
+      it "should not let people set invalid status" do
+        expect { 
+          subject.status = "foo"
         }.to raise_error ArgumentError
       end
     end

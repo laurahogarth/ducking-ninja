@@ -6,6 +6,7 @@
     %th Min
     %th Max
     %th Expertise
+    %th Status
     %th
     %th
     %th
@@ -16,6 +17,7 @@
       %td= pitch.min
       %td= pitch.max
       %td= pitch.expertise
+      %td= pitch.status
       %td= link_to 'Show', [:agent, pitch.holiday, pitch]
       %td= link_to 'Edit', edit_agent_holiday_pitch_path(pitch.holiday, pitch)
       %td= link_to 'Destroy', [:agent, pitch.holiday, pitch], :method => :delete, :data => { :confirm => 'Are you sure?' }

@@ -3,6 +3,7 @@ class Pitch < ActiveRecord::Base
   belongs_to :holiday
 
   enum expertise: { familiar: 0, expert: 1, specialist: 2 }
+  enum status: { undecided: 0, rejected: 1, accepted: 2 }
 
   validates :agent, :holiday, presence: true
   validates :min, :max, numericality: { only_integer: true, greater_than: 0 }

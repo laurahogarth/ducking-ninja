@@ -6,7 +6,7 @@ class HolidaysController < ApplicationController
 
   # GET /holidays
   def index
-    @holidays = current_traveller.holidays.includes :country
+    @holidays = current_traveller.holidays.includes(:country, :pitches => {:agent => :agent_detail})
   end
 
   # GET /holidays/1

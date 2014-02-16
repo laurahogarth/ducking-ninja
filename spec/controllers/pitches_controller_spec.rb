@@ -22,4 +22,10 @@ describe PitchesController do
       expect(assigns(:pitch)).to eq(@pitch)
     end
   end
+  describe "PATCH update_status" do
+    it "updates status and redirects to pitch" do
+      patch :update_status, {:holiday_id => @holiday, :id => @pitch, :pitch => { :status => "accepted" } }
+      expect(response).to redirect_to [@holiday, @pitch]
+    end
+  end
 end

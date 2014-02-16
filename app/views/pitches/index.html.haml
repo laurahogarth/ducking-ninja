@@ -6,6 +6,7 @@
     %th Min
     %th Max
     %th Expertise
+    %th Status
     %th
 
   - @pitches.each do |pitch|
@@ -14,4 +15,5 @@
       %td= pitch.min
       %td= pitch.max
       %td= pitch.expertise
+      %td= pitch.status
       %td= link_to 'Show', [pitch.holiday, pitch]

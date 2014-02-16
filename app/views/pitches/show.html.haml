@@ -1,3 +1,6 @@
+
+%h3 Pitch from #{@pitch.agent.agent_detail.name}
+
 %p
   %b Min:
   = @pitch.min
@@ -11,4 +14,15 @@
   %b Content:
   = @pitch.content
 
-= link_to 'Back', pitches_path, :class => :button
+= link_to 'Back to Holiday', @pitch.holiday, :class => :button
+
+= form_for [@holiday, @pitch], :method => :patch,  :url => update_status_holiday_pitch_path  do |f|
+  %fieldset
+    %legend Reaction
+    = f.radio_button :status, :accepted, checked: (@pitch.accepted? or @pitch.undecided?)
+    = f.label :status_accepted, "This looks good, I will most likely be in touch!"
+    %br
+    = f.radio_button :status, :rejected, checked: @pitch.rejected?
+    = f.label :status_rejected, "This doesn't really meet my requirements, but thank you for your time."
+  .actions
+    = f.submit 'Submit', :class => :button
