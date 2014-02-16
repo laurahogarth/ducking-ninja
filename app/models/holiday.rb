@@ -13,6 +13,11 @@ class Holiday < ActiveRecord::Base
   belongs_to :traveller
   has_many :pitches
 
+
+  def has_new_pitches?
+    pitches.where(:seen => false).any?
+  end
+
   private
   def has_at_least_one_pax
     return unless adults and children

@@ -53,9 +53,13 @@
   
     - @holiday.pitches.each do |pitch|
       %tr
-        %td= pitch.agent.agent_detail.name
+        %td 
+          =pitch.agent.agent_detail.name
+          -unless pitch.seen?
+            %strong NEW!
         %td= pitch.min
         %td= pitch.max
         %td= pitch.expertise
         %td= pitch.status
-        %td= link_to 'Show', [@holiday, pitch], :class => "tiny round secondary button"
+        %td 
+          =link_to 'Show', [@holiday, pitch], :class => "tiny round secondary button"

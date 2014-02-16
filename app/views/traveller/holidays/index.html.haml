@@ -27,7 +27,11 @@
           =raw "&pound;#{holiday.budget} (#{budget_type(holiday)})"
         %td= holiday.adults
         %td= holiday.children
-        %td= holiday.pitches.size
+        %td
+          = holiday.pitches.size
+          -if holiday.has_new_pitches?
+            %strong NEW!
+            
         %td 
           %ul.button-group.radius.round
             %li #{link_to 'Show', holiday, :class => [:tiny, :secondary, :button]}

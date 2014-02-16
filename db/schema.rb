@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140216124012) do
+ActiveRecord::Schema.define(version: 20140216160607) do
 
   create_table "agent_details", force: true do |t|
     t.integer  "agent_id"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(version: 20140216124012) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "status",     default: 0
+    t.boolean  "seen",       default: false
   end
 
   create_table "travellers", force: true do |t|
