@@ -5,6 +5,7 @@ class Ability
 
     if user.is_a? Traveller
       can :manage, Holiday, :traveller_id => user.id
+      can(:read, Pitch) { |pitch| user.pitches.ids.include? pitch.id }
     end
 
     if user.is_a? Agent

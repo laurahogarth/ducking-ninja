@@ -5,4 +5,5 @@ class Traveller < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :holidays
+  has_many :pitches, :through => :holidays
 end
