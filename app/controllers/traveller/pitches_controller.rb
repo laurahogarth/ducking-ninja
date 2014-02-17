@@ -7,9 +7,8 @@ class Traveller::PitchesController < ApplicationController
   end
 
   def update_status
-    @pitch.status = pitch_params[:status]
-    @pitch.save
-    redirect_to [@pitch.holiday, @pitch], notice: "Status was updated"
+    @pitch.update_status! pitch_params[:status]
+    redirect_to [@pitch.holiday], notice: "Status was updated"
   end
 
   # Only allow a trusted parameter "white list" through.

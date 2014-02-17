@@ -16,6 +16,11 @@ class Pitch < ActiveRecord::Base
       save
     end
   end
+
+  def update_status!(status)
+    self.status = status
+    save
+  end
   
   private
   def max_is_greater_than_min
