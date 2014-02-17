@@ -42,20 +42,26 @@ describe Agent::PitchesController do
     describe "with valid params" do
       it "creates a new Pitch" do
         expect {
-          @pitch.holiday = FactoryGirl.create(:holiday)
-          post :create, {:holiday_id => @holiday, :pitch => FactoryGirl.attributes_for(:pitch) }
+          holiday = FactoryGirl.create(:holiday)
+          post :create, {:holiday_id => holiday, :pitch => FactoryGirl.attributes_for(:pitch) }
         }.to change(Pitch, :count).by(1)
       end
 
       it "assigns a newly created pitch as @pitch and redirects" do
+        holiday = FactoryGirl.create(:holiday)
+        post :create, {:holiday_id => holiday, :pitch => FactoryGirl.attributes_for(:pitch) }
+        expect(assigns(:pitch)).to be_persisted
+        expect(response).to redirect_to([:agent, holiday, assigns[:pitch]])
+      end
+
+      it "stops the agent from creating a pitch on the same holiday" do
         @pitch.holiday = FactoryGirl.create(:holiday)
         post :create, {:holiday_id => @holiday, :pitch => FactoryGirl.attributes_for(:pitch) }
-        expect(assigns(:pitch)).to be_persisted
-        expect(response).to redirect_to([:agent, @holiday, assigns[:pitch]])
+        expect(assigns(:pitch)).to_not be_persisted
+        expect(response).to be_a_success
       end
     end
   end
-
 
   describe "PUT update" do
     describe "with valid params" do

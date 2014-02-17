@@ -1,6 +1,6 @@
 class Agent::PitchesController < ApplicationController
 
-  load_and_authorize_resource
+  load_and_authorize_resource 
   skip_load_resource :only => :create
   before_filter :authenticate_agent!
   before_action :set_holiday, :only => [:edit, :update, :new, :create]

@@ -52,5 +52,15 @@ describe Pitch do
         subject.max = 9999
       end
     end
+    context "when the agent has already pitched on a holiday" do
+      it "should be invalid!" do
+        holiday = FactoryGirl.create(:holiday)
+        agent = FactoryGirl.create(:agent)
+        pitch_1 = FactoryGirl.create(:pitch, :holiday => holiday, :agent => agent)
+        expect(pitch_1).to be_valid
+        pitch_2 = FactoryGirl.build(:pitch, :holiday => holiday, :agent => agent)
+        expect(pitch_2).not_to be_valid
+      end
+    end
   end
 end

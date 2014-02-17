@@ -33,6 +33,9 @@
   %b Description:
   = @holiday.description
 
-= link_to "Pitch!", new_agent_holiday_pitch_path(@holiday), :class => "alert button"
+-if @holiday.pitched_on_by? current_agent.id
+  .panel You have already pitched on this holiday!
+-else
+  = link_to "Pitch!", new_agent_holiday_pitch_path(@holiday), :class => "alert button"
 
 = link_to 'Back', agent_holidays_path, :class => :button

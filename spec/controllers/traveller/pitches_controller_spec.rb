@@ -18,9 +18,9 @@ describe Traveller::PitchesController do
     end
   end
   describe "PATCH update_status" do
-    it "updates status and redirects to pitch" do
+    it "updates status and redirects to holiday" do
       patch :update_status, {:holiday_id => @holiday, :id => @pitch, :pitch => { :status => "accepted" } }
-      expect(response).to redirect_to [@holiday, @pitch]
+      expect(response).to redirect_to @holiday
     end
   end
 end

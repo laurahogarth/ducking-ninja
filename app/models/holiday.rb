@@ -18,6 +18,10 @@ class Holiday < ActiveRecord::Base
     pitches.where(:seen => false).any?
   end
 
+  def pitched_on_by?(agent_id)
+    pitches.pluck(:agent_id).include? agent_id
+  end
+
   private
   def has_at_least_one_pax
     return unless adults and children
