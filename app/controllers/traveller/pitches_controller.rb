@@ -2,11 +2,7 @@ class Traveller::PitchesController < ApplicationController
   load_and_authorize_resource
 
   def show
-    unless @pitch.seen?
-      @pitch.seen = true
-      @pitch.save
-    end
-    
+    @pitch.seen!
     @agent_detail = @pitch.agent.agent_detail
   end
 

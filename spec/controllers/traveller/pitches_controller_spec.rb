@@ -10,9 +10,11 @@ describe Traveller::PitchesController do
   end 
 
   describe "GET show" do
-    it "assigns the requested pitch as @pitch" do
+    it "assigns the requested pitch as @pitch and marks it as read" do
+      expect(@pitch.seen).to eq false
       get :show, {:holiday_id => @holiday, :id => @pitch}
       expect(assigns(:pitch)).to eq(@pitch)
+      expect(assigns(:pitch).seen).to eq true
     end
   end
   describe "PATCH update_status" do

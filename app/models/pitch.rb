@@ -9,6 +9,13 @@ class Pitch < ActiveRecord::Base
   validates :min, :max, numericality: { only_integer: true, greater_than: 0 }
   validate :max_is_greater_than_min
 
+
+  def seen!
+    unless seen?
+      self.seen = true
+      save
+    end
+  end
   
   private
   def max_is_greater_than_min
