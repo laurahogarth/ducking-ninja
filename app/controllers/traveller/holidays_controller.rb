@@ -48,6 +48,7 @@ class Traveller::HolidaysController < ApplicationController
     redirect_to holidays_url, notice: 'Holiday was successfully destroyed.'
   end
 
+
   private
   # Only allow a trusted parameter "white list" through.
   def holiday_params

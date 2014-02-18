@@ -17,6 +17,14 @@ describe Agent::HolidaysController do
     end
   end
 
+  describe "GET 'pitch'" do
+    it "returns http success" do
+      holiday = FactoryGirl.create(:holiday)
+      get 'pitch', id: holiday.id
+      expect(response).to be_success
+    end
+  end
+
   describe "GET 'show'" do
     it "returns http success" do
       holiday = FactoryGirl.create(:holiday)

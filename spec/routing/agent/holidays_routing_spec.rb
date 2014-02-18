@@ -11,5 +11,9 @@ describe Agent::HolidaysController do
       expect(:get => "/agent/holidays/1").to route_to("agent/holidays#show", :id => "1")
     end
 
+    it "routes to #pitch" do
+      expect(:get => "agent/holidays/2/pitch").to route_to("agent/holidays#pitch", :id => "2")
+    end
+
   end
 end

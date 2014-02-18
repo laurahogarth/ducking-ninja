@@ -8,7 +8,7 @@ describe Agent::PitchesController do
     end
 
     it "routes to #new" do
-      expect(:get => "agent/holidays/2/pitches/new").to route_to("agent/pitches#new", :holiday_id => "2")
+      expect(:get => "agent/holidays/2/pitches/new").to_not route_to("agent/pitches#new", :holiday_id => "2")
     end
 
     it "routes to #show" do

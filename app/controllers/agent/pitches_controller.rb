@@ -48,6 +48,11 @@ class Agent::PitchesController < ApplicationController
     redirect_to agent_pitches_url, notice: 'Pitch was successfully destroyed.'
   end
 
+  # GET agent/holidays/1/pitch
+  def pitch
+  end
+
+
 
   private
     def set_holiday

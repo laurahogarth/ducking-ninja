@@ -23,13 +23,6 @@ describe Agent::PitchesController do
     end
   end
 
-  describe "GET new" do
-    it "assigns a new pitch as @pitch" do
-      get :new, {:holiday_id => @holiday }
-      expect(assigns(:holiday)).to eq(@holiday)
-    end
-  end
-
   describe "GET edit" do
     it "assigns the requested pitch as @pitch" do
       get :edit, {:holiday_id => @holiday, :id => @pitch}

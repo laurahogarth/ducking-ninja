@@ -13,4 +13,9 @@ class Agent::HolidaysController < ApplicationController
   def show
   end
 
+  def pitch
+    @pitch = @holiday.pitches.build
+    render "agent/pitches/new"
+  end
+
 end
