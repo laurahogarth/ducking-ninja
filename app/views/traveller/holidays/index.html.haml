@@ -18,7 +18,7 @@
     - @holidays.each do |holiday|
       %tr
         %td 
-          = image_tag holiday.country.flag_image
+          = flag_for holiday.country
           = holiday.country.iso_2
           = "(#{holiday.region})" unless holiday.region.blank?
         %td= holiday.nights

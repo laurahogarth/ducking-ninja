@@ -15,7 +15,7 @@
   - @pitches.each do |pitch|
     %tr
       %td
-        = image_tag pitch.holiday.country.flag_image
+        = flag_for pitch.holiday.country
         = pitch.holiday.country.name
       %td= pitch.min
       %td= pitch.max
