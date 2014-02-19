@@ -36,5 +36,6 @@
         %td 
           %ul.button-group.radius.round
             %li #{link_to 'Show', holiday, :class => [:tiny, :secondary, :button]}
-            %li #{link_to 'Edit', edit_holiday_path(holiday), :class => [:tiny, :secondary, :button]}
+            -if can? :edit, holiday
+              %li #{link_to 'Edit', edit_holiday_path(holiday), :class => [:tiny, :secondary, :button]}
             %li #{link_to 'Destroy', holiday, :class => [:tiny, :secondary, :button], :method => :delete, :data => { :confirm => 'Are you sure?' } }

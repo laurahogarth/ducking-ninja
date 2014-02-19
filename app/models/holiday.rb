@@ -7,11 +7,12 @@ class Holiday < ActiveRecord::Base
 
   validate :has_at_least_one_pax 
   validate :has_valid_dates
+  validate :has_no_pitches
 
   #ASSOCIATIONS
   belongs_to :country
   belongs_to :traveller
-  has_many :pitches
+  has_many :pitches, :dependent => :destroy
 
 
   def has_new_pitches?
@@ -23,6 +24,10 @@ class Holiday < ActiveRecord::Base
   end
 
   private
+  def has_no_pitches
+    errors.add(:base, "There have been pitches, you can't edit this holiday!") if pitches.any? 
+  end
+
   def has_at_least_one_pax
     return unless adults and children
 

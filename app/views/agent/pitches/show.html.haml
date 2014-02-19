@@ -11,5 +11,6 @@
   %b Content:
   = @pitch.content
 
-= link_to 'Edit', edit_agent_holiday_pitch_path(@pitch.holiday, @pitch), :class => [:alert, :button]
+-if can? :edit, @pitch
+  = link_to 'Edit', edit_agent_holiday_pitch_path(@pitch.holiday, @pitch), :class => [:alert, :button]
 = link_to 'Back', agent_pitches_path, :class => :button

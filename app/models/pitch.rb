@@ -9,6 +9,7 @@ class Pitch < ActiveRecord::Base
   validates :min, :max, numericality: { only_integer: true, greater_than: 0 }
   validate :max_is_greater_than_min
   validate :agent_has_not_already_pitched
+  validate :customer_has_not_seen_the_pitch
 
 
   ###########################
@@ -36,6 +37,9 @@ class Pitch < ActiveRecord::Base
   #
   ###########################
   private
+  def customer_has_not_seen_the_pitch
+    errors.add(:base, "Customer has already viewed this pitch") if seen?
+  end
 
   def max_is_greater_than_min
     errors.add(:max, "is less than minimum") if min and max and max < min

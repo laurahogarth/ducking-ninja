@@ -1,7 +1,7 @@
 %h3 Potential Customer Holiday
 %ul
   %li
-    #{@holiday.nights} nights in #{@holiday.region + ", " if @holiday.region} #{@holiday.country.name} between #{@holiday.earliest_date} and #{@holiday.latest_date}.
+    #{@holiday.nights} nights in #{(@holiday.region + ", ") unless @holiday.region.blank?} #{@holiday.country.name} between #{@holiday.earliest_date} and #{@holiday.latest_date}.
   %li
     Budget is #{@holiday.ballpark? ? "in the region of" : "a maximum of"} &pound;#{@holiday.budget}, 
     #{" not " unless @holiday.include_travel?} including travel.
