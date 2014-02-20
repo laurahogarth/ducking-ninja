@@ -1,16 +1,27 @@
 %h3 Your Holiday
-%ul
-  %li
-    #{@holiday.nights} nights in #{(@holiday.region + ", ") unless @holiday.region.blank?} #{@holiday.country.name} between #{@holiday.earliest_date} and #{@holiday.latest_date}.
-  %li
-    Budget is #{@holiday.ballpark? ? "in the region of" : "a maximum of"} &pound;#{@holiday.budget}, 
-    #{" not " unless @holiday.include_travel?} including travel.
-  %li
-    #{@holiday.adults} adults #{"and " + @holiday.children.to_s + " children" if @holiday.children > 0} are going.
-%blockquote
+.row.collapse
+  .small-6.large-6.columns
+    %ul
+      %li
+        #{pluralize(@holiday.nights, "night")} in #{(@holiday.region + ", ") unless @holiday.region.blank?} #{@holiday.country.name} between #{@holiday.earliest_date} and #{@holiday.latest_date}.
+      %li
+        Budget is #{@holiday.ballpark? ? "in the region of" : "a maximum of"} &pound;#{@holiday.budget}, 
+        #{" not " unless @holiday.include_travel?} including travel.
+      %li
+        #{@holiday.adults} adults #{"and " + @holiday.children.to_s + " children" if @holiday.children > 0} are going.
+  .small-6.large-6.columns
+    #map{:style => "width:100%;height:300px;border:solid 1px #DDD;"}
+
+  %blockquote
   = @holiday.description
+
 
 = link_to 'Edit', edit_holiday_path(@holiday), :class => :button if can? :edit, @holiday 
 = link_to 'Back', holidays_path, :class => :button
 
 = render partial: "traveller/pitches/list", locals: { pitches: @holiday.pitches }
+
+= content_for :page_js do
+  :coffeescript
+    $ ->
+      MapServices.render_map "#map", "#{@holiday.region}", "#{@holiday.country.name}", 5, false
