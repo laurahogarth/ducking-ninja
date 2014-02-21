@@ -36,4 +36,5 @@
 = content_for :page_js do
   :coffeescript
     $ ->
-      MapServices.render_map "#map", "#{@agent_detail.postcode}", "UK", 16, true
+      ms = new MapServices("#map")
+      ms.render_uk_street("#{@agent_detail.postcode}")
