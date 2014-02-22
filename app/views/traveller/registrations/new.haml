@@ -1,0 +1,20 @@
+%h2 Traveller Sign Up
+
+%p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dolor nisl, laoreet sed iaculis sit amet, iaculis eu lectus. Pellentesque eu augue accumsan, volutpat quam nec, dignissim nisi. Nullam eleifend nunc vel eros pulvinar, eget porttitor urna rhoncus. Vivamus eget suscipit sapien.
+
+=form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| 
+  =render partial: 'layouts/shared/form_errors', locals: {subject: resource}  
+
+  %fieldset
+    %legend Login Details
+    = f.label :email, "Email (this will be used as your username)" 
+    = f.email_field :email, :autofocus => true 
+
+    = f.label :password
+    = f.password_field :password
+
+    = f.label :password_confirmation 
+    = f.password_field :password_confirmation 
+
+  = f.submit "Sign up", :class => [:alert, :button] 
+  = link_to "Cancel", new_traveller_session_path, :class => :button

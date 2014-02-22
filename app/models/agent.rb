@@ -7,4 +7,5 @@ class Agent < ActiveRecord::Base
   has_one :agent_detail
   has_many :pitches
 
+  accepts_nested_attributes_for :agent_detail
 end

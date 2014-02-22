@@ -1,0 +1,16 @@
+%h2 Traveller Sign in
+
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| 
+  = f.label :email 
+  = f.email_field :email, :autofocus => true 
+
+  = f.label :password 
+  = f.password_field :password 
+
+  = f.submit "Sign in", :class => :button
+
+%hr
+%h3 Not registered yet?
+
+= link_to "Sign Up Here", new_traveller_registration_path, :class => [:alert, :button]
+

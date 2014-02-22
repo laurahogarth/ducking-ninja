@@ -43,7 +43,7 @@ DuckingNinja::Application.routes.draw do
   # Users
   #
   ###############
-  devise_for :travellers 
-  devise_for :agents
+  devise_for :travellers, controllers: { registrations: "traveller/registrations", sessions: "traveller/sessions" } 
+  devise_for :agents, controllers: { registrations: "agent/registrations", sessions: "agent/sessions" }
 
  end
