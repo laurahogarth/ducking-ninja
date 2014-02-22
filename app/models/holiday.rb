@@ -19,7 +19,8 @@ class Holiday < ActiveRecord::Base
     pitches.where(:seen => false).any?
   end
 
-  def pitched_on_by?(agent_id)
+  def pitched_on_by?(agent)
+    agent_id = agent.is_a?(Fixnum) ? agent : agent.id
     pitches.pluck(:agent_id).include? agent_id
   end
 

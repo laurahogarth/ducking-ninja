@@ -11,6 +11,8 @@ class Agent::HolidaysController < ApplicationController
 
   # GET agent/holidays/1
   def show
+    #TODO Scope?
+    @pitch = @holiday.pitches.where(:agent_id => current_agent.id).first if @holiday.pitched_on_by? (current_agent.id)
   end
 
   def pitch

@@ -1,13 +1,9 @@
 %span
   %em= @agent_detail.name
-  %br
-
 %p
   #{@agent_detail.address_1}, #{@agent_detail.address_2}, #{@agent_detail.town}, #{@agent_detail.county},#{@agent_detail.postcode}
 
 -unless @agent_detail.website.blank?
   =link_to @agent_detail.website, @agent_detail.website
-  %p Phone: #{@agent_detail.main_phone}
-  %p Alt. Phone: #{@agent_detail.alt_phone}
-  %p #{@agent_detail.email}
-  %p Opening Hours: #{@agent_detail.opening_hours}
+%p Phone: #{@agent_detail.main_phone} #{@agent_detail.alt_phone}
+%p Opening Hours: #{@agent_detail.opening_hours}

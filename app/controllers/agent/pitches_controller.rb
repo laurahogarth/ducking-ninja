@@ -3,7 +3,7 @@ class Agent::PitchesController < ApplicationController
   load_and_authorize_resource 
   skip_load_resource :only => :create
   before_filter :authenticate_agent!
-  before_action :set_holiday, :only => [:edit, :update, :new, :create]
+  before_action :set_holiday, :only => [:edit, :show, :update, :new, :create, :destroy]
   
   # GET agent/pitches
   def index
@@ -27,7 +27,7 @@ class Agent::PitchesController < ApplicationController
   def create
     @pitch = @holiday.pitches.build(pitch_params.merge(:agent_id => current_agent.id))
     if @pitch.save
-      redirect_to [:agent, @holiday, @pitch], notice: 'Pitch was successfully created.'
+      redirect_to [:agent, @holiday], notice: 'Pitch was successfully created.'
     else
       render action: 'new'
     end
@@ -36,7 +36,7 @@ class Agent::PitchesController < ApplicationController
   # PATCH/PUT agent/holidays/1/pitches/1
   def update
     if @pitch.update(pitch_params)
-      redirect_to [:agent, @holiday, @pitch], notice: 'Pitch was successfully updated.'
+      redirect_to [:agent, @holiday], notice: 'Pitch was successfully updated.'
     else
       render action: 'edit'
     end
@@ -45,7 +45,7 @@ class Agent::PitchesController < ApplicationController
   # DELETE agent/holidays/1/pitches/1
   def destroy
     @pitch.destroy
-    redirect_to agent_pitches_url, notice: 'Pitch was successfully destroyed.'
+    redirect_to [:agent, @holiday], notice: 'Pitch was successfully destroyed.'
   end
 
   # GET agent/holidays/1/pitch

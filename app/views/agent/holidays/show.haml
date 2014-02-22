@@ -1,18 +1,43 @@
-%h3 Potential Customer Holiday
-%ul
-  %li
-    #{@holiday.nights} nights in #{(@holiday.region + ", ") unless @holiday.region.blank?} #{@holiday.country.name} between #{@holiday.earliest_date} and #{@holiday.latest_date}.
-  %li
-    Budget is #{@holiday.ballpark? ? "in the region of" : "a maximum of"} &pound;#{@holiday.budget}, 
-    #{" not " unless @holiday.include_travel?} including travel.
-  %li
-    #{@holiday.adults} adults #{"and " + @holiday.children.to_s + " children" if @holiday.children > 0} are going.
-%blockquote
-  = @holiday.description
+%h3 
+  = flag_for @holiday.country
+  Holiday in #{@holiday.country.name}
+
+
+.row.collapse
+  .small-6.large-6.columns
+    %ul
+      %li
+        #{pluralize(@holiday.nights, "night")} in #{(@holiday.region + ", ") unless @holiday.region.blank?} #{@holiday.country.name} between #{@holiday.earliest_date} and #{@holiday.latest_date}.
+      %li
+        Budget is #{@holiday.ballpark? ? "in the region of" : "a maximum of"} &pound;#{@holiday.budget}, #{" not " unless @holiday.include_travel?} including travel.
+      %li
+        #{@holiday.adults} adults #{"and " + @holiday.children.to_s + " children" if @holiday.children > 0} are going.
+  .small-6.large-6.columns
+    #map{:style => "width:100%;height:300px;border:solid 1px #DDD;"}
+
+  %blockquote
+    = @holiday.description
+
+%br
 
 -if can? :pitch, @holiday
   =link_to "Pitch!", pitch_agent_holiday_path(@holiday), :class => "alert button"
 -else
-  .panel You have already pitched on this holiday!
+  .panel 
+    %h4 Your Pitch
+    %p Between &pound;#{@pitch.min} and &pound;#{@pitch.max}. You stated your level of expertise as being <strong>#{@pitch.expertise}. The customer has seen this pitch.</strong>
 
-= link_to 'Back', agent_holidays_path, :class => :button
+
+    %ul.button-group.radius.round
+      %li= link_to 'Show', [:agent, @holiday, @pitch], :class => [:tiny, :button]
+      -if can? :edit, @pitch
+        %li= link_to 'Edit', edit_agent_holiday_pitch_path(@holiday, @pitch), :class => [:tiny, :button]
+      %li= link_to 'Destroy', [:agent, @holiday, @pitch], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => [:tiny, :button]
+= link_to 'Back To Holidays', agent_holidays_path, :class => :button
+
+= content_for :page_js do
+  :coffeescript
+    $ ->
+      ms = new MapServices "#map"
+      ms.render_country("#{@holiday.country.name}")
+

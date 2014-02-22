@@ -24,5 +24,5 @@
 = content_for :page_js do
   :coffeescript
     $ ->
-      ms = new MapServices("#map")
+      ms = new MapServices "#map"
       ms.render_country("#{@holiday.country.name}")

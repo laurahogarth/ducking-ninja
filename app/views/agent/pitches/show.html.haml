@@ -1,16 +1,24 @@
-%p
+%h2 Your Pitch
+%p You have pitched on a holiday to #{(@holiday.region + ", ") unless @holiday.region.blank?} #{@holiday.country.name} for #{@holiday.adults} adults#{" and " + @holiday.children.to_s + " children" if @holiday.children > 0}.
+    
+  
+%p 
   %b Min:
-  = @pitch.min
+  &pound;#{@pitch.min}
 %p
   %b Max:
-  = @pitch.max
+  &pound;#{@pitch.max}
 %p
   %b Expertise:
   = @pitch.expertise
-%p
-  %b Content:
-  = @pitch.content
+
+-unless @pitch.content.blank?
+  %blockquote #{@pitch.content}
 
 -if can? :edit, @pitch
   = link_to 'Edit', edit_agent_holiday_pitch_path(@pitch.holiday, @pitch), :class => [:alert, :button]
-= link_to 'Back', agent_pitches_path, :class => :button
+-else
+  .panel
+    %strong The customer has already seen this pitch so it cannot be edited.
+= link_to 'Back To Holiday', [:agent, @pitch.holiday], :class => :button
+= link_to 'Back To Pitches', agent_pitches_path, :class => :button
