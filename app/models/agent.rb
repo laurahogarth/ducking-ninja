@@ -8,4 +8,10 @@ class Agent < ActiveRecord::Base
   has_many :pitches
 
   accepts_nested_attributes_for :agent_detail
+
+
+  def to_s
+    agent_detail ? agent_detail.name : email
+  end
+
 end

@@ -18,6 +18,14 @@ gem 'sass-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'foundation-rails'
 
+
+# Active Admin
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'polyamorous', :github => 'activerecord-hackery/polyamorous'
+gem "ransack", github: "activerecord-hackery/ransack", branch: "rails-4.1"
+gem "formtastic", github: "justinfrench/formtastic"
+
+
 # Authentication/Authorization
 gem 'devise'
 gem 'cancan'
