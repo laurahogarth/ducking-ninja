@@ -14,9 +14,9 @@
     - pitches.each do |pitch|
       %tr
         %td 
-          =pitch.agent.agent_detail.name
           -unless pitch.seen?
-            %strong NEW!
+            %span.label New
+          =pitch.agent.agent_detail.name
         %td &pound;#{pitch.min}
         %td &pound;#{pitch.max}
         %td= pitch.expertise

@@ -10,8 +10,10 @@
     %ul.right
       -if traveller_signed_in?
         =render "layouts/shared/traveller_topbar"
+        %li.divider
       -if agent_signed_in?
         =render "layouts/shared/agent_topbar"
+        %li.divider
       %li
         =link_to "About", about_path
       %li

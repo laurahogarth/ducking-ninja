@@ -33,7 +33,7 @@
         %td
           = holiday.pitches.size
           - if @holidays_with_unseen_pitches.include? holiday.id 
-            %strong NEW!
+            %span.label New
         %td 
           %ul.button-group.radius.round
             %li #{link_to 'Show', holiday, :class => [:tiny, :secondary, :button]}
