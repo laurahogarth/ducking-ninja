@@ -16,7 +16,8 @@ class Holiday < ActiveRecord::Base
   has_many :agents, :through => :pitches
 
   #SCOPES
-  scope :recent, -> { where("updated_at > ?", 1.week.ago).order(:updated_at => :desc) }
+  default_scope { order(:updated_at => :desc) }
+  scope :recent, -> { where("updated_at > ?", 1.week.ago) }
   scope :pitched, -> { joins(:pitches) }
   scope :unpitched, -> { joins("LEFT OUTER JOIN pitches ON pitches.holiday_id = holidays.id").where("pitches.id IS NULL") }
 

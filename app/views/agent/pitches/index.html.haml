@@ -9,7 +9,7 @@
     %th Max
     %th Expertise
     %th Status
-    %th Seen?
+    %th Pitch Seen by Customer?
     %th
     %th
     %th
@@ -24,7 +24,7 @@
       %td= pitch.max
       %td= pitch.expertise
       %td= pitch.status
-      %td= pitch.seen?
+      %td= nice_boolean(pitch.seen?)
       %td
         %ul.button-group.radius.round
           %li= link_to 'Show', [:agent, pitch.holiday, pitch], :class => [:tiny, :secondary, :button]

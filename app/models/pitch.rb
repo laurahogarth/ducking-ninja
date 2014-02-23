@@ -11,6 +11,7 @@ class Pitch < ActiveRecord::Base
   validate :agent_has_not_already_pitched
 
   #SCOPES
+  default_scope { order(created_at: :desc) }
   scope :unseen, -> { where(seen: false) }
 
 
