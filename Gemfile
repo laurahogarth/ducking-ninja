@@ -30,6 +30,10 @@ gem "formtastic", github: "justinfrench/formtastic"
 gem 'devise'
 gem 'cancan'
 
+
+# Misc Plugins
+gem 'kaminari'
+
 # Testing
 group :development, :test do
   gem 'autotest'

@@ -5,13 +5,12 @@ class Agent::HolidaysController < AgentApplicationController
 
   # GET agent/holidays
   def index
-    @holidays = Holiday.all.includes :country
+    @holidays = Holiday.all.includes(:country, :agents).page params[:page]
   end
 
   # GET agent/holidays/1
   def show
-    #TODO Scope?
-    @pitch = @holiday.pitches.where(:agent_id => current_agent.id).first if @holiday.pitched_on_by? (current_agent.id)
+    @pitch = @holiday.pitches.find_by agent: current_agent
   end
 
   def pitch

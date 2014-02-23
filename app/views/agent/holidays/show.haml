@@ -25,7 +25,7 @@
 -else
   .panel 
     %h4 Your Pitch
-    %p Between &pound;#{@pitch.min} and &pound;#{@pitch.max}. You stated your level of expertise as being <strong>#{@pitch.expertise}. The customer has seen this pitch.</strong>
+    %p Between &pound;#{@pitch.min} and &pound;#{@pitch.max}. You stated your level of expertise as being <strong>#{@pitch.expertise}. #{"The customer has seen this pitch." if @pitch.seen? }</strong>
 
 
     %ul.button-group.radius.round
@@ -33,7 +33,7 @@
       -if can? :edit, @pitch
         %li= link_to 'Edit', edit_agent_holiday_pitch_path(@holiday, @pitch), :class => [:tiny, :button]
       %li= link_to 'Destroy', [:agent, @holiday, @pitch], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => [:tiny, :button]
-= link_to 'Back To Holidays', agent_holidays_path, :class => :button
+= link_to 'View Holidays', agent_holidays_path, :class => :button
 
 = content_for :page_js do
   :coffeescript

@@ -5,11 +5,12 @@ class Traveller::HolidaysController < TravellerApplicationController
 
   # GET /holidays
   def index
-    @holidays = current_traveller.holidays.includes(:country, :pitches => {:agent => :agent_detail})
+    @holidays = current_traveller.holidays.includes(:country, :pitches => {:agent => :agent_detail}).page params[:page]
   end
 
   # GET /holidays/1
   def show
+    @pitches = @holiday.pitches.page params[:page]
   end
 
   # GET /holidays/new

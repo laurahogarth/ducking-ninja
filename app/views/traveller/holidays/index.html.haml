@@ -1,5 +1,7 @@
 %h1 Listing holidays
 
+= paginate @holidays
+
 = link_to 'New Holiday', new_holiday_path, :class => :button
 
 %table
@@ -39,3 +41,6 @@
             -if can? :edit, holiday
               %li #{link_to 'Edit', edit_holiday_path(holiday), :class => [:tiny, :secondary, :button]}
             %li #{link_to 'Destroy', holiday, :class => [:tiny, :secondary, :button], :method => :delete, :data => { :confirm => 'Are you sure?' } }
+            
+= paginate @holidays
+

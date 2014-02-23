@@ -1,5 +1,7 @@
 %h1 Listing holidays
 
+= paginate @holidays
+
 %table
   %thead
     %tr
@@ -20,12 +22,14 @@
           = holiday.country.iso_2
           = "(#{holiday.region})" unless holiday.region.blank?
         %td= holiday.nights
-        %td= holiday.earliest_date
-        %td= holiday.latest_date
+        %td= nice_date(holiday.earliest_date)
+        %td= nice_date(holiday.latest_date)
         %td
-          =raw "&pound;#{holiday.budget} (#{budget_type(holiday)})"
+          &pound;#{holiday.budget} <br /> (#{budget_type(holiday)})
         %td= holiday.adults
         %td= holiday.children
-        %td= holiday.pitched_on_by?(current_agent)
-        %td= link_to 'Show', [:agent, holiday], :class => "tiny round secondary button"
+        %td= holiday.agents.include? current_agent 
+        %td= link_to 'Show', [:agent, holiday], :class => [:tiny, :round, :secondary, :button]
+
+= paginate @holidays
 

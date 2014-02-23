@@ -20,5 +20,5 @@
 -else
   .panel
     %strong The customer has already seen this pitch so it cannot be edited.
-= link_to 'Back To Holiday', [:agent, @pitch.holiday], :class => :button
-= link_to 'Back To Pitches', agent_pitches_path, :class => :button
+= link_to 'View this Holiday', [:agent, @pitch.holiday], :class => :button
+= link_to 'View Pitches', agent_pitches_path, :class => :button
