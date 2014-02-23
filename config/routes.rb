@@ -34,6 +34,7 @@ DuckingNinja::Application.routes.draw do
     root "home#index"
     resource :agent_details, :only => [:show, :edit, :update], :as => :detail
     resources :holidays, :only => [:index, :show] do
+      get :recent, on: :collection
       get :pitch, on: :member
       resources :pitches, :except => [:new,:index]
     end

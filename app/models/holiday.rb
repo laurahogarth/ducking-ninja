@@ -15,6 +15,17 @@ class Holiday < ActiveRecord::Base
   has_many :pitches, :dependent => :destroy
   has_many :agents, :through => :pitches
 
+  #SCOPES
+  scope :recent, -> { where("updated_at > ?", 1.week.ago).order(:updated_at => :desc) }
+  scope :pitched, -> { joins(:pitches) }
+  scope :unpitched, -> { joins("LEFT OUTER JOIN pitches ON pitches.holiday_id = holidays.id").where("pitches.id IS NULL") }
+
+
+  ##########################
+  #
+  # PUBLIC METHODS
+  #
+  ##########################
 
   def has_new_pitches?
     pitches.where(:seen => false).any?
@@ -24,6 +35,13 @@ class Holiday < ActiveRecord::Base
     agent_id = agent.is_a?(Fixnum) ? agent : agent.id
     agents.ids.include? agent_id
   end
+
+
+  ##########################
+  #
+  # PRIVATE METHODS
+  #
+  ##########################
 
   private
   def has_no_pitches

@@ -5,7 +5,16 @@ class Agent::HolidaysController < AgentApplicationController
 
   # GET agent/holidays
   def index
-    @holidays = Holiday.all.includes(:country, :agents).page params[:page]
+    case params[:scope]
+      when "recent"
+        @holidays = Holiday.recent.includes(:country, :agents).page params[:page]
+      when "pitched"
+        @holidays = Holiday.pitched.includes(:country, :agents).page params[:page]
+      when "unpitched"
+        @holidays = Holiday.unpitched.includes(:country, :agents).page params[:page]
+      else
+        @holidays = Holiday.all.includes(:country, :agents).page params[:page]
+    end
   end
 
   # GET agent/holidays/1
