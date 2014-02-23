@@ -1,8 +1,7 @@
-class Agent::PitchesController < ApplicationController
+class Agent::PitchesController < AgentApplicationController
 
   load_and_authorize_resource 
   skip_load_resource :only => :create
-  before_filter :authenticate_agent!
   before_action :set_holiday, :only => [:edit, :show, :update, :new, :create, :destroy]
   
   # GET agent/pitches

@@ -1,5 +1,4 @@
-class Agent::HomeController < ApplicationController
-  before_filter :authenticate_agent!
+class Agent::HomeController < AgentApplicationController
   def index    
   end
 end

@@ -41,7 +41,7 @@ class Pitch < ActiveRecord::Base
   end
 
   def agent_has_not_already_pitched 
-    errors.add(:agent_id, "You have already pitched on this holiday!") if holiday and holiday.pitched_on_by? agent_id and self.new_record? 
+    errors.add(:agent_id, "You have already pitched on this holiday!") if holiday and agent and holiday.pitched_on_by? agent and self.new_record? 
   end
 
 end

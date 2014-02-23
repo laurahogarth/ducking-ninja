@@ -44,7 +44,7 @@ describe Agent::PitchesController do
         holiday = FactoryGirl.create(:holiday)
         post :create, {:holiday_id => holiday, :pitch => FactoryGirl.attributes_for(:pitch) }
         expect(assigns(:pitch)).to be_persisted
-        expect(response).to redirect_to([:agent, holiday, assigns[:pitch]])
+        expect(response).to redirect_to([:agent, holiday])
       end
 
       it "stops the agent from creating a pitch on the same holiday" do
@@ -74,7 +74,7 @@ describe Agent::PitchesController do
 
     it "redirects to the pitches list" do
       delete :destroy, {:holiday_id => @holiday, :id => @pitch}
-      expect(response).to redirect_to(agent_pitches_url)
+      expect(response).to redirect_to([:agent, @holiday])
     end
   end
 

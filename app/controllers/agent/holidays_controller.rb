@@ -1,8 +1,7 @@
 
-class Agent::HolidaysController < ApplicationController
+class Agent::HolidaysController < AgentApplicationController
 
   load_and_authorize_resource
-  before_filter :authenticate_agent!
 
   # GET agent/holidays
   def index

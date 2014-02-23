@@ -1,7 +1,6 @@
-class Agent::AgentDetailsController < ApplicationController
+class Agent::AgentDetailsController < AgentApplicationController
 
   authorize_resource
-  before_filter :authenticate_agent!
   before_filter :set_agent_detail
 
   # GET agent/agent_details/

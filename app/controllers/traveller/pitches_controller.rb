@@ -1,4 +1,4 @@
-class Traveller::PitchesController < ApplicationController
+class Traveller::PitchesController < TravellerApplicationController
   load_and_authorize_resource
 
   def show
