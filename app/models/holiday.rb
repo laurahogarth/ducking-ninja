@@ -15,6 +15,7 @@ class Holiday < ActiveRecord::Base
   has_many :pitches, :dependent => :destroy
   has_many :agents, :through => :pitches
 
+
   def has_new_pitches?
     pitches.where(:seen => false).any?
   end

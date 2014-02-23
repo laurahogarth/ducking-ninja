@@ -32,9 +32,8 @@
         %td= holiday.children
         %td
           = holiday.pitches.size
-          -if holiday.has_new_pitches?
+          - if @holidays_with_unseen_pitches.include? holiday.id 
             %strong NEW!
-            
         %td 
           %ul.button-group.radius.round
             %li #{link_to 'Show', holiday, :class => [:tiny, :secondary, :button]}

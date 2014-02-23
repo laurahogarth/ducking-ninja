@@ -12,7 +12,7 @@ describe Agent::HolidaysController do
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'
-      expect(assigns(:holidays)).to eq Holiday.all
+      expect(assigns(:holidays).count).to eq Holiday.count
       expect(response).to be_success
     end
   end

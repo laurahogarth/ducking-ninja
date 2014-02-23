@@ -10,6 +10,9 @@ class Pitch < ActiveRecord::Base
   validate :max_is_greater_than_min
   validate :agent_has_not_already_pitched
 
+  #SCOPES
+  scope :unseen, -> { where(seen: false) }
+
 
   ###########################
   #
