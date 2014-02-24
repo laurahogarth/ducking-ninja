@@ -24,7 +24,27 @@ class Holiday < ActiveRecord::Base
 
   ##########################
   #
-  # PUBLIC METHODS
+  # PUBLIC CLASS METHODS
+  #
+  ##########################
+
+  def self.scoped_by(scope)
+    case scope
+      when "recent"
+        recent
+      when "pitched"
+        pitched
+      when "unpitched"
+        unpitched
+      else
+        all
+    end
+  end
+
+
+  ##########################
+  #
+  # PUBLIC INSTANCE METHODS
   #
   ##########################
 
@@ -36,7 +56,6 @@ class Holiday < ActiveRecord::Base
     agent_id = agent.is_a?(Fixnum) ? agent : agent.id
     agents.ids.include? agent_id
   end
-
 
   ##########################
   #
