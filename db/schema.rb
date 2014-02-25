@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20140222175828) do
   create_table "pitches", force: true do |t|
     t.integer  "min"
     t.integer  "max"
-    t.integer  "expertise"
+    t.integer  "expertise",  default: 0
     t.text     "content"
     t.integer  "agent_id"
     t.integer  "holiday_id"
