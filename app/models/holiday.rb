@@ -18,8 +18,10 @@ class Holiday < ActiveRecord::Base
   #SCOPES
   default_scope { order(:updated_at => :desc) }
   scope :recent, -> { where("updated_at > ?", 1.week.ago) }
-  scope :pitched, -> { joins(:pitches) }
-  scope :unpitched, -> { joins("LEFT OUTER JOIN pitches ON pitches.holiday_id = holidays.id").where("pitches.id IS NULL") }
+  scope :pitched_on_by, ->(agent) { joins(:pitches).where(pitches: {agent: agent}) }
+  scope :unpitched_on_by, ->(agent) do 
+    joins("LEFT OUTER JOIN pitches ON pitches.holiday_id = holidays.id and pitches.agent_id = #{agent.id}").where("pitches.id IS NULL") 
+  end
 
 
   ##########################
@@ -28,14 +30,14 @@ class Holiday < ActiveRecord::Base
   #
   ##########################
 
-  def self.scoped_by(scope)
+  def self.agent_scope(agent, scope)
     case scope
       when "recent"
         recent
       when "pitched"
-        pitched
+        pitched_on_by agent
       when "unpitched"
-        unpitched
+        unpitched_on_by agent
       else
         all
     end

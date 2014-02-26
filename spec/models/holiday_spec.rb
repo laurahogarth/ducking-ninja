@@ -53,5 +53,31 @@ describe Holiday do
       end
     end
 
+    describe "Scopes" do
+      before do 
+        @agent = FactoryGirl.create(:agent)
+        @pitched_holiday = FactoryGirl.create(:holiday, :region => "Pitched on")
+        @pitched_holiday.pitches << FactoryGirl.create(:pitch, :agent => @agent)
+        @unpitched_holiday = FactoryGirl.create(:holiday, :region => "Unpitched on")
+        @old_holiday_pitched_on_by_someone_else = FactoryGirl.create(:holiday, :updated_at => DateTime.now - 2.weeks, :region => "Old")
+        @old_holiday_pitched_on_by_someone_else.pitches << FactoryGirl.create(:pitch)
+      end
+
+      it "returns 'recent' holidays updated within the last week for" do
+        recent_holiday_ids = Holiday.recent.ids
+        expect(recent_holiday_ids).to include(@pitched_holiday.id)
+        expect(recent_holiday_ids).to_not include(@old_holiday_pitched_on_by_someone_else.id)
+      end
+
+      it "returns pitched_on holidays for an agent" do
+        expect(Holiday.pitched_on_by(@agent)).to include(@pitched_holiday)
+        expect(Holiday.pitched_on_by(@agent)).to_not include(@unpitched_holiday)
+      end
+      it "returns unpitched_on holidays for an agent" do
+        expect(Holiday.unpitched_on_by(@agent)).to_not include(@pitched_holiday)
+        expect(Holiday.unpitched_on_by(@agent)).to include(@unpitched_holiday)
+      end
+    end
+
   end
 end

@@ -5,7 +5,7 @@ class Agent::HolidaysController < AgentApplicationController
 
   # GET agent/holidays
   def index
-    @holidays = Holiday.scoped_by(params[:scope]).includes(:country, :agents).page params[:page]
+    @holidays = Holiday.agent_scope(current_agent, params[:scope]).includes(:country, :agents).page params[:page]
   end
 
   # GET agent/holidays/1
