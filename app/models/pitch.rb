@@ -12,6 +12,7 @@ class Pitch < ActiveRecord::Base
 
   #SCOPES
   default_scope { order(created_at: :desc) }
+  scope :seen, -> { where(seen: true) }
   scope :unseen, -> { where(seen: false) }
 
 

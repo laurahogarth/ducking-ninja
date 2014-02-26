@@ -6,9 +6,9 @@ class Agent::HolidaysController < AgentApplicationController
   # GET agent/holidays
   def index
     @holidays = Holiday.agent_scope(current_agent, params[:scope]).page(params[:page]).includes(:country)
-    @holiday_ids_with_pitch = Holiday.joins(:pitches).where(:id => @holidays.ids, :pitches => {:agent => current_agent}).ids
-    @holiday_ids_with_seen_pitch = Holiday.joins(:pitches).where(:id => @holidays.ids, :pitches => {:agent => current_agent, :seen => true}).ids
-
+    @holidays_with_pitch = Holiday.joins(:pitches).where(:id => @holidays.ids, :pitches => {:agent => current_agent})
+    @holiday_ids_with_pitch = @holidays_with_pitch.map(&:id)
+    @holiday_ids_with_seen_pitch = @holidays_with_pitch.where(:pitches => { :seen => true }).pluck(:id)
   end
 
   # GET agent/holidays/1
