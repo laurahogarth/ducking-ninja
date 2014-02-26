@@ -6,7 +6,7 @@ class Agent::PitchesController < AgentApplicationController
   
   # GET agent/pitches
   def index
-    @pitches = current_agent.pitches.includes(:holiday => :country).page params[:page]
+    @pitches = current_agent.pitches.page(params[:page]).includes(:holiday => :country)
   end
 
   # GET agent/holidays/1/pitches/1
