@@ -42,8 +42,12 @@
           &pound;#{holiday.budget} <br /> (#{budget_type(holiday)})
         %td= holiday.adults
         %td= holiday.children
-        %td= nice_boolean(holiday.agents.include? current_agent)
-        %td= nice_boolean(holiday.pitches.where(:agent => current_agent).first.seen?) rescue content_tag :span, "N/A", :class => [:label, :secondary]
+        -if @holiday_ids_with_pitch.include? holiday.id
+          %td= nice_boolean(true)
+          %td= nice_boolean(@holiday_ids_with_seen_pitch.include? holiday.id) 
+        -else
+          %td= nice_boolean(false)
+          %td= content_tag :span, "N/A", class: [:label, :secondary]
         %td= nice_date(holiday.created_at)
         %td= nice_date(holiday.updated_at)
         %td= link_to 'Show', [:agent, holiday], :class => [:tiny, :round, :secondary, :button]
