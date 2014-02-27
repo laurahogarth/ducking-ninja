@@ -14,6 +14,7 @@ class Pitch < ActiveRecord::Base
   default_scope { order(created_at: :desc) }
   scope :seen, -> { where(seen: true) }
   scope :unseen, -> { where(seen: false) }
+  scope :by_agent_for_holiday, -> (agent, holiday) { where(agent:agent, holiday:holiday) }
 
 
   ###########################
