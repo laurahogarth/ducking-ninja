@@ -1,0 +1,23 @@
+%h1 Listing Countries
+
+= paginate @countries
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th ISO2 Code
+      %th Holidays
+      %th
+  %tbody
+    - @countries.each do |country|
+      %tr
+        %td 
+          = flag_for country
+          = country.name
+        %td= country.iso_2
+        %td= country.holidays.size
+        %td= link_to 'Show', holidays_agent_country_path(country.id), :class => [:tiny, :round, :secondary, :button]
+
+= paginate @countries
+

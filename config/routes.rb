@@ -1,7 +1,6 @@
 DuckingNinja::Application.routes.draw do
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+
   ###############
   #
   # Static pages
@@ -32,6 +31,9 @@ DuckingNinja::Application.routes.draw do
 
   namespace :agent do
     root "home#index"
+    resources :countries, only: :index do
+      get :holidays, on: :member
+    end
     resource :agent_details, :only => [:show, :edit, :update], :as => :detail
     resources :holidays, :only => [:index, :show] do
       get :recent, on: :collection
@@ -47,6 +49,10 @@ DuckingNinja::Application.routes.draw do
   #
   ###############
   devise_for :travellers, controllers: { registrations: "traveller/registrations", sessions: "traveller/sessions" } 
+  
   devise_for :agents, controllers: { registrations: "agent/registrations", sessions: "agent/sessions" }
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
 
  end

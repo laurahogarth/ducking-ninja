@@ -11,6 +11,7 @@
   %dd{:class => ("active" if params[:scope] == "unpitched")} 
     =link_to("Unpitched", controller: "agent/holidays", action: :index, :scope => :unpitched)
 
+
 = paginate @holidays
 
 %table

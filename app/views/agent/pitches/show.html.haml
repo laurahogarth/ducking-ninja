@@ -1,5 +1,5 @@
 %h2 Your Pitch
-%p You have pitched on a holiday to #{(@holiday.region + ", ") unless @holiday.region.blank?} #{@holiday.country.name} for #{@holiday.adults} adults#{" and " + @holiday.children.to_s + " children" if @holiday.children > 0}.
+%p You have pitched on a holiday to #{(@holiday.region + ", ") unless @holiday.region.blank?} #{link_to(@holiday.country.name, holidays_agent_country_path(@holiday.country.id))} for #{@holiday.adults} adults#{" and " + @holiday.children.to_s + " children" if @holiday.children > 0}.
     
   
 %p 

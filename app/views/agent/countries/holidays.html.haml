@@ -1,0 +1,56 @@
+%h1 Showing Holidays for #{@country.name}
+
+%dl.sub-nav
+  %dt Filter:
+  %dd{:class => ("active" unless params[:scope])} 
+    =link_to("All", holidays_agent_country_path(@country.id))
+  %dd{:class => ("active" if params[:scope] == "recent")} 
+    =link_to("Recent", controller: "agent/countries", action: :holidays, :id => @country.id, :scope => :recent)
+  %dd{:class => ("active" if params[:scope] == "pitched")} 
+    =link_to("Pitched", controller: "agent/countries", action: :holidays, :id => @country.id, :scope => :pitched)
+  %dd{:class => ("active" if params[:scope] == "unpitched")} 
+    =link_to("Unpitched", controller: "agent/countries", action: :holidays, :id => @country.id, :scope => :unpitched)
+
+-if @holidays.empty?
+  %p 
+    There are no holidays in #{@country.name} listed at this time.
+    #{link_to "View all countries", agent_countries_path}.
+-else
+  = paginate @holidays
+
+  %table
+    %thead
+      %tr
+        %th Nights
+        %th Earliest date
+        %th Latest date
+        %th Budget
+        %th Adults
+        %th Children
+        %th Pitched?
+        %th Pitch seen by customer?
+        %th Created
+        %th Last Updated
+        %th
+    %tbody
+      - @holidays.each do |holiday|
+        %tr
+          %td= holiday.nights
+          %td= nice_date(holiday.earliest_date)
+          %td= nice_date(holiday.latest_date)
+          %td
+            &pound;#{holiday.budget} <br /> (#{budget_type(holiday)})
+          %td= holiday.adults
+          %td= holiday.children
+          -if @holiday_ids_with_pitch.include? holiday.id
+            %td= nice_boolean(true)
+            %td= nice_boolean(@holiday_ids_with_seen_pitch.include? holiday.id) 
+          -else
+            %td= nice_boolean(false)
+            %td= content_tag :span, "N/A", class: [:label, :secondary]
+          %td= nice_date(holiday.created_at)
+          %td= nice_date(holiday.updated_at)
+          %td= link_to 'Show', [:agent, holiday], :class => [:tiny, :round, :secondary, :button]
+  
+  = paginate @holidays
+
