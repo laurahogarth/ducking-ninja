@@ -25,8 +25,14 @@
   =link_to "Pitch!", pitch_agent_holiday_path(@holiday), :class => "alert button"
 -else
   .panel 
-    %h4 Your Pitch
-    %p Between &pound;#{@pitch.min} and &pound;#{@pitch.max}. You stated your level of expertise as being <strong>#{@pitch.expertise}. #{"The customer has seen this pitch." if @pitch.seen? }</strong>
+    %h4 Detail
+    -if @pitch
+      %p Between &pound;#{@pitch.min} and &pound;#{@pitch.max}. You stated your level of expertise as being <strong>#{@pitch.expertise}. #{"The customer has seen this pitch." if @pitch.seen? }</strong>
+    -elsif !@holiday.open
+      %p The customer is no longer accepting pitches on this holiday.
+    -else
+      %p You may not pitch on this holiday.
+
 
 
     %ul.button-group.radius.round

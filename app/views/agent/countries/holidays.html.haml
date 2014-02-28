@@ -29,6 +29,7 @@
         %th Children
         %th Pitched?
         %th Pitch seen by customer?
+        %th Status
         %th Created
         %th Last Updated
         %th
@@ -48,6 +49,8 @@
           -else
             %td= nice_boolean(false)
             %td= content_tag :span, "N/A", class: [:label, :secondary]
+          %td
+            =holiday.open? ? content_tag(:span, "Open", :class => [:label]) : content_tag(:span, "Closed", :class => [:alert, :label]) 
           %td= nice_date(holiday.created_at)
           %td= nice_date(holiday.updated_at)
           %td= link_to 'Show', [:agent, holiday], :class => [:tiny, :round, :secondary, :button]

@@ -49,6 +49,12 @@ class Traveller::HolidaysController < TravellerApplicationController
     redirect_to holidays_url, notice: 'Holiday was successfully destroyed.'
   end
 
+  # PATCH /holidays/1/toggle_open
+  def toggle_open
+    @holiday.toggle! :open    
+    redirect_to @holiday, notice: "Holiday is now #{@holiday.open? ? 'open' : 'closed'}" 
+  end
+
 
   private
   # Only allow a trusted parameter "white list" through.

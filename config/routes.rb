@@ -22,9 +22,10 @@ DuckingNinja::Application.routes.draw do
   #
   ###############
 
-  resources :holidays, :controller => "traveller/holidays" do
-    resources :pitches, :only => :show, :controller => "traveller/pitches" do
-      patch "update_status", :on => :member
+  resources :holidays, controller: "traveller/holidays" do
+    patch :toggle_open, on: :member
+    resources :pitches, only: :show, controller: "traveller/pitches" do
+      patch "update_status", on:  :member
     end
   end
   

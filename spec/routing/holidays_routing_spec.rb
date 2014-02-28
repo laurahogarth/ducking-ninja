@@ -24,11 +24,15 @@ describe Traveller::HolidaysController do
     end
 
     it "routes to #update" do
-      expect(:put => "/holidays/1").to route_to("traveller/holidays#update", :id => "1")
+      expect(:patch => "/holidays/1").to route_to("traveller/holidays#update", :id => "1")
     end
 
     it "routes to #destroy" do
       expect(:delete => "/holidays/1").to route_to("traveller/holidays#destroy", :id => "1")
+    end
+
+    it "routes to #toggle_open" do
+      expect(:patch => "/holidays/1/toggle_open").to route_to("traveller/holidays#toggle_open", :id => "1")
     end
 
   end

@@ -14,7 +14,9 @@ class Ability
       can :manage, AgentDetail, :agent_id => user.id
       can :manage, Pitch, :agent_id => user.id
       can :read, Holiday
-      can(:pitch, Holiday) { |holiday| !holiday.pitched_on_by? user.id }
+      can(:pitch, Holiday) do |holiday| 
+        !holiday.pitched_on_by?(user.id) and holiday.open?
+      end
       cannot([:edit, :update], Pitch) { |pitch| pitch.seen? }
     end
 

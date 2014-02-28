@@ -15,6 +15,7 @@
       %th Adults
       %th Children
       %th Pitches
+      %th Status
       %th
   %tbody
     - @holidays.each do |holiday|
@@ -34,6 +35,8 @@
           = holiday.pitches.size
           - if @holidays_with_unseen_pitches.include? holiday.id 
             %span.label New
+        %td
+          =holiday.open? ? content_tag(:span, "Open", :class => [:label]) : content_tag(:span, "Closed", :class => [:alert, :label]) 
         %td 
           %ul.button-group.radius.round
             %li #{link_to 'Show', holiday, :class => [:tiny, :secondary, :button]}

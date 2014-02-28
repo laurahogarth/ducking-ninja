@@ -10,6 +10,9 @@
       %li
         #{@holiday.adults} adults #{"and " + @holiday.children.to_s + " children" if @holiday.children > 0} are going.
     = link_to 'Edit', edit_holiday_path(@holiday), :class => :button if can? :edit, @holiday 
+
+    = link_to(@holiday.open? ? "Close" : "Reopen", toggle_open_holiday_path, :method => :patch, :id => "toggle_open", :class => [:alert, :button])
+
     = link_to 'View All Holidays', holidays_path, :class => :button
   .small-6.large-6.columns
     #map{:style => "width:100%;height:300px;border:solid 1px #DDD;"}
