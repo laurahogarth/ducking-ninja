@@ -3,6 +3,9 @@ class Country < ActiveRecord::Base
 
   has_many :holidays
 
+  #SCOPES
+  scope :starting_with, ->(letter) { where("name LIKE ?", "#{letter}%") }
+
   def flag_image
     "flags/flag-#{iso_2.downcase}.png"
   end

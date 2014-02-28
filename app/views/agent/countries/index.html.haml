@@ -1,6 +1,9 @@
 %h1 Listing Countries
 
-= paginate @countries
+%ul.pagination
+  -("A".."Z").each do |letter|
+    %li{:class => ("current" if letter == @letter)}
+      = link_to letter, :controller => "agent/countries", :action => :index, :letter => letter 
 
 %table
   %thead
@@ -18,6 +21,4 @@
         %td= country.iso_2
         %td= country.holidays.size
         %td= link_to 'Show', holidays_agent_country_path(country.id), :class => [:tiny, :round, :secondary, :button]
-
-= paginate @countries
 

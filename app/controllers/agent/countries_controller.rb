@@ -1,6 +1,8 @@
+
 class Agent::CountriesController < ApplicationController
   def index
-    @countries = Country.all.includes(:holidays).page params[:page]
+    @letter = params[:letter] || "A"
+    @countries = Country.starting_with(@letter).includes(:holidays)
   end
 
   def holidays
