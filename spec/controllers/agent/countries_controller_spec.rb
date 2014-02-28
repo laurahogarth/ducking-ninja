@@ -10,8 +10,11 @@ describe Agent::CountriesController do
   end
 
   describe "GET 'holidays'" do
+    before do
+      @country = FactoryGirl.create(:country)
+    end
     it "returns http success" do
-      get 'holidays'
+      get 'holidays', id: @country
       expect(response).to be_success
     end
   end
