@@ -18,6 +18,7 @@ class Holiday < ActiveRecord::Base
   #SCOPES
   default_scope { order(:updated_at => :desc) }
   scope :recent, -> { where("holidays.updated_at > ?", 1.week.ago) }
+  scope :in_countries, ->(country_ids) { where(:country_id => country_ids) }
   scope :pitched_on_by, ->(agent) { joins(:pitches).where(pitches: {agent: agent}) }
   scope :unpitched_on_by, ->(agent) do 
     joins("LEFT OUTER JOIN pitches ON pitches.holiday_id = holidays.id and pitches.agent_id = #{agent.id}").where("pitches.id IS NULL") 
@@ -38,6 +39,8 @@ class Holiday < ActiveRecord::Base
         pitched_on_by agent
       when "unpitched"
         unpitched_on_by agent
+      when "favourites"
+        in_countries agent.favourite_countries.pluck(:country_id)
       else
         all
     end

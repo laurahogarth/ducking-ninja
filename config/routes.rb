@@ -33,6 +33,7 @@ DuckingNinja::Application.routes.draw do
   namespace :agent do
     root "home#index"
     resources :countries, only: :index do
+      patch :toggle_favourite, on: :member
       get :holidays, on: :member
     end
     resource :agent_details, :only => [:show, :edit, :update], :as => :detail

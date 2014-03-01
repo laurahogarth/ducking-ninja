@@ -10,6 +10,8 @@
     =link_to("Pitched", controller: "agent/holidays", action: :index, :scope => :pitched)
   %dd{:class => ("active" if params[:scope] == "unpitched")} 
     =link_to("Unpitched", controller: "agent/holidays", action: :index, :scope => :unpitched)
+  %dd{:class => ("active" if params[:scope] == "favourites")} 
+    =link_to("In Favourite Countries", controller: "agent/holidays", action: :index, :scope => :favourites)
   %dd 
     =link_to "Search By Country", agent_countries_path
 

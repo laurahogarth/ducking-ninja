@@ -1,4 +1,6 @@
-%h1 Showing Holidays for #{@country.name}
+%h1 
+  Showing Holidays for #{@country.name}
+  =add_favourite @country, :class => [:tiny, :round, :secondary, :button]
 
 %dl.sub-nav
   %dt Filter:
