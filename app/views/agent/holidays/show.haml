@@ -2,7 +2,6 @@
   = flag_for @holiday.country
   Holiday in #{@holiday.country.name}
 
-
 .row.collapse
   .small-6.large-6.columns
     %ul
@@ -16,6 +15,7 @@
   .small-6.large-6.columns
     #map{:style => "width:100%;height:300px;border:solid 1px #DDD;"}
 
+.row
   %blockquote
     = @holiday.description
 
@@ -33,14 +33,16 @@
     -else
       %p You may not pitch on this holiday.
 
-
-
-    %ul.button-group.radius.round
-      %li= link_to 'Show', [:agent, @holiday, @pitch], :class => [:tiny, :button]
-      -if can? :edit, @pitch
-        %li= link_to 'Edit', edit_agent_holiday_pitch_path(@holiday, @pitch), :class => [:tiny, :button]
-      %li= link_to 'Destroy', [:agent, @holiday, @pitch], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => [:tiny, :button]
+    -if @pitch
+      %ul.button-group.radius.round
+        %li= link_to 'Show', [:agent, @holiday, @pitch], :class => [:tiny, :button] 
+        -if can? :edit, @pitch
+          %li= link_to 'Edit', edit_agent_holiday_pitch_path(@holiday, @pitch), :class => [:tiny, :button]
+        %li= link_to 'Destroy', [:agent, @holiday, @pitch], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => [:tiny, :button]
 = link_to 'View Holidays', agent_holidays_path, :class => :button
+
+= content_for :top_page_js do
+  =include_cdn :google_maps
 
 = content_for :page_js do
   :coffeescript

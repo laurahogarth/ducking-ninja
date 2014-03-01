@@ -33,6 +33,9 @@
     = f.submit 'Submit Reaction', :class => [:alert, :button]
     = link_to 'Ignore for now', @pitch.holiday, :class => :button
 
+= content_for :top_page_js do
+  =include_cdn :google_maps
+
 = content_for :page_js do
   :coffeescript
     $ ->

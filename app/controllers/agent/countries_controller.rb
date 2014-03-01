@@ -6,7 +6,12 @@ class Agent::CountriesController < ApplicationController
   end
 
   def holidays
-    @country = Country.find(params[:id])
+    if params[:id] =~ /[1-9][0-9]*/
+      @country = Country.find params[:id]
+    else
+      @country = Country.find_by :iso_2 => params[:id]
+    end
+
     @holidays = Holiday.agent_scope(current_agent, params[:scope]).where(:country => @country).includes(:country).page params[:page]
 
     relevant_pitches = Pitch.by_agent_for_holiday(current_agent, @holidays)

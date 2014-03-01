@@ -13,4 +13,12 @@ module HtmlHelper
     end
   end
 
+  def self.to_holiday_count_js(data)
+    final_array = [["Country", "Holidays"]]
+    data.each do |country|
+      final_array << [country.name, country.holidays.size]
+    end
+    return final_array 
+  end
+
 end

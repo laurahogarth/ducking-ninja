@@ -1,2 +1,77 @@
-%h1 Home#index
-%p Find me in app/views/agent/index.haml
+#geochart_div{:style => "height:500px", :class => "spinner"}
+
+%hr
+
+.row
+  .large-4.medium-4.small-4.columns
+    %h4 Top 20 Destinations
+    %table
+      %thead
+        %th
+        %th Country
+        %th Holidays
+      %tbody
+        -@top_destinations.each_with_index do |destination, index|
+          %tr
+            %td=index+1
+            %td
+              =link_to(destination.name, holidays_agent_country_path(destination.id))
+              (#{destination.iso_2})
+            %td=destination.holidays.size
+
+
+  .large-8.medium-8.small-8.columns
+    %h4 Recent Unpitched Holidays Worldwide
+    %table
+      %thead
+        %th Country
+        %th Budget
+        %th Adults
+        %th Children
+        %th
+      %tbody
+        -@recent_unpitched.each do |holiday|
+          %tr
+            %td=holiday.country.name
+            %td &pound;#{holiday.budget}
+            %td=holiday.adults
+            %td=holiday.children
+            %td=link_to("Show", agent_holiday_path(holiday), :class => [:tiny, :round, :secondary, :button])
+
+    =link_to("All recent unpitched holidays", controller: "agent/holidays", action: :index, :scope => :unpitched)
+    %hr
+
+    %h4 Recent Unpitched Holidays in your Favourite Countries
+    %table
+      %thead
+        %th Country
+        %th Budget
+        %th Adults
+        %th Children
+        %th
+      %tbody
+        -@recent_favourites.each do |holiday|
+          %tr
+            %td=holiday.country.name
+            %td &pound;#{holiday.budget}
+            %td=holiday.adults
+            %td=holiday.children
+            %td=link_to("Show", agent_holiday_path(holiday), :class => [:tiny, :round, :secondary, :button])
+
+
+    %ul
+
+      %li=link_to("All Holidays in your favourite countries", controller: "agent/holidays", action: :index, :scope => :favourites)
+      %li=link_to "Add more favourites", agent_countries_path
+    
+
+=content_for :top_page_js do
+  =include_cdn :jsapi
+  :coffeescript   
+    google.load('visualization', '1', {packages:['geochart']})
+  
+=content_for :page_js do
+  :coffeescript 
+    rawdata = #{HtmlHelper.to_holiday_count_js(@top_destinations)}
+    geo_chart_renderer = new GeochartRenderer('geochart_div', rawdata)
+    geo_chart_renderer.render_geochart()
