@@ -34,6 +34,12 @@ gem 'cancan'
 # Misc Plugins
 gem 'kaminari'
 
+# Dev Server Configuration
+group :development do
+  gem 'thin'
+  gem 'quiet_assets'
+end
+
 # Testing
 group :development, :test do
   gem 'autotest'
@@ -50,6 +56,7 @@ end
 
 # Use unicorn as the app server
 # gem 'unicorn'
+
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
