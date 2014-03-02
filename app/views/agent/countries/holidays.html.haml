@@ -7,11 +7,11 @@
   %dd{:class => ("active" unless params[:scope])} 
     =link_to("All", holidays_agent_country_path(@country.id))
   %dd{:class => ("active" if params[:scope] == "recent")} 
-    =link_to("Recent", controller: "agent/countries", action: :holidays, :id => @country.id, :scope => :recent)
+    =link_to "Recent", scope: :recent
   %dd{:class => ("active" if params[:scope] == "pitched")} 
-    =link_to("Pitched", controller: "agent/countries", action: :holidays, :id => @country.id, :scope => :pitched)
+    =link_to "Pitched", scope: :pitched
   %dd{:class => ("active" if params[:scope] == "unpitched")} 
-    =link_to("Unpitched", controller: "agent/countries", action: :holidays, :id => @country.id, :scope => :unpitched)
+    =link_to "Unpitched", scope: :unpitched
 
 -if @holidays.empty?
   %p 

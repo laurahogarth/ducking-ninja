@@ -3,7 +3,7 @@
 %ul.pagination
   -("A".."Z").each do |letter|
     %li{:class => ("current" if letter == @letter)}
-      = link_to letter, :controller => "agent/countries", :action => :index, :letter => letter 
+      = link_to letter, :letter => letter 
 
 %table
   %thead

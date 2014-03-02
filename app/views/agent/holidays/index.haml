@@ -3,15 +3,15 @@
 %dl.sub-nav
   %dt Filter:
   %dd{:class => ("active" unless params[:scope])} 
-    =link_to("All", agent_holidays_path)
+    =link_to "All", agent_holidays_path
   %dd{:class => ("active" if params[:scope] == "recent")} 
-    =link_to("Recent", controller: "agent/holidays", action: :index, :scope => :recent)
+    =link_to "Recent", :scope => :recent
   %dd{:class => ("active" if params[:scope] == "pitched")} 
-    =link_to("Pitched", controller: "agent/holidays", action: :index, :scope => :pitched)
+    =link_to "Pitched", :scope => :pitched
   %dd{:class => ("active" if params[:scope] == "unpitched")} 
-    =link_to("Unpitched", controller: "agent/holidays", action: :index, :scope => :unpitched)
+    =link_to "Unpitched", :scope => :unpitched
   %dd{:class => ("active" if params[:scope] == "favourites")} 
-    =link_to("In Favourite Countries", controller: "agent/holidays", action: :index, :scope => :favourites)
+    =link_to "In Favourite Countries", :scope => :favourites
   %dd 
     =link_to "Search By Country", agent_countries_path
 
