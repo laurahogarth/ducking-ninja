@@ -21,4 +21,10 @@ module HtmlHelper
     return final_array 
   end
 
+  def sortable_column(title, column_name = nil)
+    column_name ||= title.downcase.to_sym
+    sort_order = params[:sort_order] == "asc" ? "desc" : "asc"
+    link_to title, :sort_order => sort_order, :sort_column => column_name
+  end
+
 end

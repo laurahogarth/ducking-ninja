@@ -16,7 +16,6 @@ class Holiday < ActiveRecord::Base
   has_many :agents, :through => :pitches
 
   #SCOPES
-  default_scope { order(:updated_at => :desc) }
   scope :recent, -> { where("holidays.updated_at > ?", 1.week.ago) }
   scope :in_countries, ->(country_ids) { where(:country_id => country_ids) }
   scope :pitched_on_by, ->(agent) { joins(:pitches).where(pitches: {agent: agent}) }

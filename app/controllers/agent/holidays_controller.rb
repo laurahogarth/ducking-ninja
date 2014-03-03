@@ -5,7 +5,7 @@ class Agent::HolidaysController < AgentApplicationController
 
   # GET agent/holidays
   def index
-    @holidays = Holiday.agent_scope(current_agent, params[:scope]).includes(:country).page params[:page]
+    @holidays = Holiday.agent_scope(current_agent, params[:scope]).includes(:country).order(sort_conditions).page params[:page]
 
     relevant_pitches = Pitch.by_agent_for_holiday(current_agent, @holidays)
     @holiday_ids_with_pitch = relevant_pitches.map(&:holiday_id).uniq
@@ -21,5 +21,6 @@ class Agent::HolidaysController < AgentApplicationController
     @pitch = @holiday.pitches.build
     render "agent/pitches/new"
   end
+
 
 end

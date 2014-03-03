@@ -21,18 +21,18 @@
 %table
   %thead
     %tr
-      %th Country
-      %th Nights
-      %th Earliest date
-      %th Latest date
-      %th Budget
-      %th Adults
-      %th Children
+      %th= sortable_column "Country", :country_id
+      %th= sortable_column "Nights"
+      %th= sortable_column "Earliest date", :earliest_date
+      %th= sortable_column "Latest date", :latest_date
+      %th= sortable_column "Budget"
+      %th= sortable_column "Adults"
+      %th= sortable_column "Children"
       %th Pitched?
       %th Pitch seen by customer?
       %th Status
-      %th Created
-      %th Last Updated
+      %th= sortable_column "Created", :created_at
+      %th= sortable_column "Last Updated", :updated_at
       %th
   %tbody
     - @holidays.each do |holiday|
