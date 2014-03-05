@@ -1,6 +1,5 @@
 module HtmlHelper
 
-
   def placekitten(width, height)
     image_tag "http://placekitten.com/g/#{width}/#{height}"
   end
@@ -22,9 +21,15 @@ module HtmlHelper
   end
 
   def sortable_column(title, column_name = nil)
-    column_name ||= title.downcase.to_sym
+    column_name ||= title.parameterize.underscore.to_sym
+
+    if params[:sort_column]
+      sort_column = params[:sort_column].to_sym
+      css_class = params[:sort_order] if column_name == sort_column
+    end
+
     sort_order = params[:sort_order] == "asc" ? "desc" : "asc"
-    link_to title, :sort_order => sort_order, :sort_column => column_name
+    link_to title, { :sort_order => sort_order, :sort_column => column_name }, { :class => css_class }
   end
 
 end

@@ -21,6 +21,7 @@ module DuckingNinja
     # config.i18n.default_locale = :de
     
     config.autoload_paths += %W(#{Rails.root}/app/controllers/concerns/base)
+    config.autoload_paths += %W(#{Rails.root}/app/controllers/concerns/features)
     config.autoload_paths += %W(#{Rails.root}/app/models/concerns/validators)
     
   end

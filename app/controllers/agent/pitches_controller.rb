@@ -1,12 +1,14 @@
 class Agent::PitchesController < AgentApplicationController
 
+  include Features::SortableTable
+
   load_and_authorize_resource 
   skip_load_resource :only => :create
   before_action :set_holiday, :only => [:edit, :show, :update, :new, :create, :destroy]
   
   # GET agent/pitches
   def index
-    @pitches = current_agent.pitches.includes(:holiday => :country).page params[:page]
+    @pitches = current_agent.pitches.includes(:holiday => :country).order(sort_conditions).page params[:page]
   end
 
   # GET agent/holidays/1/pitches/1

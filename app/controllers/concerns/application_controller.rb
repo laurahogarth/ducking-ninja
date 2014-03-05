@@ -32,18 +32,5 @@ class ApplicationController < ActionController::Base
   end
 
 
-  ###################
-  # SORTABLE COLUMNS
-  # TODO: put this into a mixin
-  ###################
-
-  private
-  def sort_conditions
-    if(params[:sort_column] && params[:sort_order])
-      return params[:sort_column].to_sym => params[:sort_order].to_sym      
-    else
-      return nil
-    end
-  end
 
 end

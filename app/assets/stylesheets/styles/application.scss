@@ -4,3 +4,20 @@
   background-image: url('/assets/icons/ajax-loader.gif');
   background-repeat: no-repeat;
 }
+
+.asc, .desc
+{
+  background-position: left center;
+  background-repeat: no-repeat;
+  padding-left: 10px;
+}
+
+.asc
+{
+  background-image: url('/assets/icons/up_arrow.gif');
+}
+
+.desc
+{
+  background-image: url('/assets/icons/down_arrow.gif');
+}

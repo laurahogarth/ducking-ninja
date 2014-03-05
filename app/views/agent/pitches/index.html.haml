@@ -5,10 +5,11 @@
 %table
   %tr
     %th Country
-    %th Min
-    %th Max
+    %th= sortable_column "Min", :min
+    %th= sortable_column "Max", :max
     %th Expertise
     %th Status
+    %th= sortable_column "Created", :created_at
     %th Pitch Seen by Customer?
     %th
     %th
@@ -24,6 +25,7 @@
       %td= pitch.max
       %td= pitch.expertise
       %td= pitch.status
+      %td= nice_date(pitch.created_at)
       %td= nice_boolean(pitch.seen?)
       %td
         %ul.button-group.radius.round

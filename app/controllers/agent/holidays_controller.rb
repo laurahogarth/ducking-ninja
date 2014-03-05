@@ -1,6 +1,8 @@
 
 class Agent::HolidaysController < AgentApplicationController
 
+  include Features::SortableTable
+
   load_and_authorize_resource
 
   # GET agent/holidays
