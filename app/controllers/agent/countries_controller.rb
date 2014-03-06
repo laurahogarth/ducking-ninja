@@ -1,5 +1,4 @@
-
-class Agent::CountriesController < ApplicationController
+class Agent::CountriesController < AgentApplicationController
   def index
     @letter = params[:letter] || "A"
     @countries = Country.starting_with(@letter).includes(:holidays)

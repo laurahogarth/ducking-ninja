@@ -1,4 +1,6 @@
 class Agent::AgentDetailsController < AgentApplicationController
+  
+  skip_before_filter :check_verified!
 
   authorize_resource
   before_filter :set_agent_detail

@@ -1,5 +1,4 @@
 class Agent::PitchesController < AgentApplicationController
-
   include Features::SortableTable
 
   load_and_authorize_resource 

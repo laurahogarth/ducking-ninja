@@ -1,6 +1,8 @@
 class Agent::HomeController < AgentApplicationController
-  def index    
 
+  skip_before_filter :check_verified!, only: :awaiting_verification
+
+  def index    
     @top_destinations = Country.select("countries.*, count(holidays.id) AS holidays_count" ).
       joins( "LEFT OUTER JOIN holidays ON holidays.country_id = countries.id" ).
       where( "holidays.open = 't'").
@@ -12,4 +14,9 @@ class Agent::HomeController < AgentApplicationController
     @recent_favourites = Holiday.unpitched_on_by(current_agent).in_countries(current_agent.favourite_countries.pluck(:country_id)).limit(5).includes(:country)
 
   end
+
+  def awaiting_verification
+    redirect_to agent_root_path if current_agent.verified?
+  end
+
 end

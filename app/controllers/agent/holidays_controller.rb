@@ -1,6 +1,4 @@
-
 class Agent::HolidaysController < AgentApplicationController
-
   include Features::SortableTable
 
   load_and_authorize_resource
@@ -23,6 +21,5 @@ class Agent::HolidaysController < AgentApplicationController
     @pitch = @holiday.pitches.build
     render "agent/pitches/new"
   end
-
 
 end

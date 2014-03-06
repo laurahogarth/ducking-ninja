@@ -2,6 +2,12 @@ require 'spec_helper'
 
 describe Agent::CountriesController do
 
+  before do
+    #Sign in a traveller, create them a holiday
+    @agent = FactoryGirl.create(:agent)
+    sign_in :agent, @agent
+  end 
+
   describe "GET 'index'" do
     it "returns http success" do
       get 'index'

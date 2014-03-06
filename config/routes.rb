@@ -32,6 +32,7 @@ DuckingNinja::Application.routes.draw do
 
   namespace :agent do
     root "home#index"
+    get "awaiting_verification", to: "home#awaiting_verification"
     resources :countries, only: :index do
       patch :toggle_favourite, on: :member
       get :holidays, on: :member
