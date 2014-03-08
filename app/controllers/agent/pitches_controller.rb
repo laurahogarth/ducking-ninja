@@ -51,6 +51,14 @@ class Agent::PitchesController < AgentApplicationController
   def pitch
   end
 
+  def find_by_ref
+    pitch = current_agent.pitches.where(:ref => params[:ref].upcase).first
+    if pitch
+      redirect_to [:agent, pitch.holiday, pitch]
+    else
+      redirect_to request.referrer, notice: "Could not find pitch with that reference"
+    end
+  end
 
 
   private

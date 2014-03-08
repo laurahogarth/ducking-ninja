@@ -1,10 +1,13 @@
 class @MapRenderer
 
-  DEFAULT_MAP_OPTIONS =
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+  DEFAULT_MAP_OPTIONS = {}
+
 
   constructor: (el) ->
     @el = el
+    DEFAULT_MAP_OPTIONS =
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+
 
   render_map: (geocoder_request, map_options) ->
     self = @
@@ -17,6 +20,7 @@ class @MapRenderer
         map.setCenter(latlng)
         map.fitBounds(bounds)
         self.add_marker(map, latlng, map_options["marker_title"]) if map_options["show_marker"]
+
 
   add_marker: (map, latlng, title = "") ->
     marker = new google.maps.Marker

@@ -8,7 +8,7 @@ FactoryGirl.define do
     town "MyString"
     county "MyString"
     postcode "T35 7ER"
-    email "test@test.com"
+    sequence(:email) { |n| "test#{n}@test.com" }
     main_phone "0121 123 4567"
     alt_phone "0121 123 4567"
     fax "0121 123 4567"

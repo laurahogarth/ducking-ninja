@@ -41,9 +41,11 @@ DuckingNinja::Application.routes.draw do
     resources :holidays, :only => [:index, :show] do
       get :recent, on: :collection
       get :pitch, on: :member
-      resources :pitches, :except => [:new,:index]
+      resources :pitches, :except => [:new,:index] 
     end
-    resources :pitches, :only => :index
+    resources :pitches, :only => :index do
+      post "find_by_ref", on: :collection
+    end
   end
    
   ###############

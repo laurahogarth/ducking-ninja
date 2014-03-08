@@ -62,5 +62,18 @@ describe Pitch do
         expect(pitch_2).not_to be_valid
       end
     end
+
+    describe "Instance Methods" do
+      describe "#generate_ref" do
+        it "assigns a ref number to a newly saved pitch" do
+          pitch = FactoryGirl.build(:pitch)
+          expect(pitch.ref).to be_nil        
+          iso = pitch.holiday.country.iso_2
+          pitch.save
+          expect(pitch.ref).to eq ("#{iso}#{DB_VERSION}#{pitch.id}")
+        end
+      end
+    end
+
   end
 end

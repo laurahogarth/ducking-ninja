@@ -5,6 +5,7 @@
   %table
     %tr
       %th Agent
+      %th Ref
       %th Min
       %th Max
       %th Expertise
@@ -17,6 +18,7 @@
           -unless pitch.seen?
             %span.label New
           =pitch.agent.agent_detail.name
+        %td= pitch.ref
         %td &pound;#{pitch.min}
         %td &pound;#{pitch.max}
         %td= pitch.expertise

@@ -27,6 +27,7 @@
   .panel 
     %h4 Detail
     -if @pitch
+      %p You have pitched on this holiday (ref: #{@pitch.ref})
       %p Between &pound;#{@pitch.min} and &pound;#{@pitch.max}. You stated your level of expertise as being <strong>#{@pitch.expertise}. #{"The customer has seen this pitch." if @pitch.seen? }</strong>
     -elsif !@holiday.open
       %p The customer is no longer accepting pitches on this holiday.

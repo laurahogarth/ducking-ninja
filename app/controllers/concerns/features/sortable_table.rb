@@ -9,7 +9,7 @@ module Features
     if(params[:sort_column] && params[:sort_order] && ["asc","desc"].include?(params[:sort_order]))
       return params[:sort_column].to_sym => params[:sort_order].to_sym  
     else
-      return nil
+      return {:created_at => :desc}
     end
   end
 end

@@ -5,6 +5,7 @@ class Pitch < ActiveRecord::Base
   enum expertise: { familiar: 0, expert: 1, specialist: 2 }
   enum status: { undecided: 0, rejected: 1, accepted: 2 }
 
+  validates :ref, presence: true, unless: :new_record?
   validates :agent, :holiday, presence: true
   validates :min, :max, numericality: { only_integer: true, greater_than: 0 }
   validate :max_is_greater_than_min
@@ -14,6 +15,9 @@ class Pitch < ActiveRecord::Base
   scope :seen, -> { where(seen: true) }
   scope :unseen, -> { where(seen: false) }
   scope :by_agent_for_holiday, -> (agent, holiday) { where(agent:agent, holiday:holiday) }
+
+  #HOOKS
+  after_save :generate_ref
 
   ###########################
   #
@@ -46,6 +50,10 @@ class Pitch < ActiveRecord::Base
 
   def agent_has_not_already_pitched 
     errors.add(:agent_id, "You have already pitched on this holiday!") if holiday and agent and holiday.pitched_on_by? agent and self.new_record? 
+  end
+
+  def generate_ref
+    self.update_attribute(:ref, "#{holiday.country.iso_2}#{DB_VERSION}#{self.id}") unless self.ref
   end
 
 end

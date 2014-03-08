@@ -1,5 +1,15 @@
 %h1 Listing pitches
 
+
+.row
+  =form_tag find_by_ref_agent_pitches_path do
+    .large-6.columns
+      .row.collapse
+        .small-10.columns
+          =text_field_tag :ref, nil, placeholder: "Find by reference number", :required => true
+        .small-2.columns
+          =submit_tag "GO!", class: [:button, :postfix]        
+                                                                          
 = paginate @pitches
 
 %table
@@ -10,11 +20,11 @@
     %th Expertise
     %th Status
     %th= sortable_column "Created", :created_at
+    %th Ref
     %th Pitch Seen by Customer?
     %th
     %th
     %th
-
 
   - @pitches.each do |pitch|
     %tr
@@ -26,6 +36,7 @@
       %td= pitch.expertise
       %td= pitch.status
       %td= nice_date(pitch.created_at)
+      %td= pitch.ref
       %td= nice_boolean(pitch.seen?)
       %td
         %ul.button-group.radius.round

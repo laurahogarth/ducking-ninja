@@ -1,16 +1,15 @@
 %h2 Your Pitch
 %p You have pitched on a holiday to #{(@holiday.region + ", ") unless @holiday.region.blank?} #{link_to(@holiday.country.name, holidays_agent_country_path(@holiday.country.id))} for #{@holiday.adults} adults#{" and " + @holiday.children.to_s + " children" if @holiday.children > 0}.
-    
+
+%p 
+  %b Ref: #{@pitch.ref}
   
 %p 
-  %b Min:
-  &pound;#{@pitch.min}
+  %b Min: &pound;#{@pitch.min}
 %p
-  %b Max:
-  &pound;#{@pitch.max}
+  %b Max: &pound;#{@pitch.max}
 %p
-  %b Expertise:
-  = @pitch.expertise
+  %b Expertise: #{@pitch.expertise}
 
 -unless @pitch.content.blank?
   %blockquote #{@pitch.content}

@@ -78,6 +78,5 @@ describe Holiday do
         expect(Holiday.unpitched_on_by(@agent)).to include(@unpitched_holiday)
       end
     end
-
   end
 end
