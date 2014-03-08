@@ -28,7 +28,7 @@ gem "formtastic", github: "justinfrench/formtastic"
 
 # Authentication/Authorization
 gem 'devise'
-gem 'cancan'
+gem 'cancancan', '~> 1.7'
 
 
 # Misc Plugins

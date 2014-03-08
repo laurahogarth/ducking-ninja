@@ -1,7 +1,5 @@
 class Traveller::HolidaysController < TravellerApplicationController
-
   load_and_authorize_resource
-  skip_load_resource :only => :create
 
   # GET /holidays
   def index
