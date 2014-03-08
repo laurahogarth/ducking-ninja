@@ -7,7 +7,6 @@ class Agent::AgentDetailsController < AgentApplicationController
 
   # GET agent/agent_details/
   def show
-    @favourite_countries = Country.where(:id => current_agent.favourite_countries.pluck(:country_id))
   end
 
   # GET agent/agent_details/edit

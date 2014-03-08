@@ -1,0 +1,27 @@
+%h1 Listing Favourite Countries
+
+=link_to "Add Favourite Countries", agent_countries_path, class: :button
+
+-if @countries.empty?
+  %p You have not yet added any favourite countries. Adding favourite countries means you can find holidays in countries you specialise in quicker. 
+-else
+  =paginate @countries
+  %table
+    %thead
+      %tr
+        %th Name
+        %th ISO2 Code
+        %th
+        %th
+    %tbody
+      -@countries.each do |country|
+        %tr
+          %td 
+            = flag_for country
+            = country.name
+          %td= country.iso_2
+          %td= add_favourite country, :class => [:tiny, :round, :secondary, :button]
+          %td= link_to 'Show', holidays_agent_country_path(country.id), :class => [:tiny, :round, :secondary, :button]
+
+  =paginate @countries
+

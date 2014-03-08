@@ -40,9 +40,3 @@
 
 = link_to 'Edit', edit_agent_detail_path, :class => [:alert, :button]
 
-.panel
-  %h3 Favourite Countries
-  %p You have specified the following countries as your favourites. #{link_to "Add more favourites", agent_countries_path}
-  %ul
-    -@favourite_countries.each do |favourite_country|
-      %li= link_to favourite_country.name, holidays_agent_country_path(favourite_country.id)

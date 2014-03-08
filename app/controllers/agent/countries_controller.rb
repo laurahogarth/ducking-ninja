@@ -18,6 +18,10 @@ class Agent::CountriesController < AgentApplicationController
     @holiday_ids_with_seen_pitch = relevant_pitches.reject{|x|x.seen == false}.map(&:holiday_id).uniq 
   end
 
+  def favourite
+    @countries = Country.where(:id => current_agent.favourite_countries.pluck(:country_id)).page params[:page]
+  end
+
   def toggle_favourite
     @country = Country.find(params[:id])
     is_favourite = FavouriteCountry.toggle(current_agent, @country)
