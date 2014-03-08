@@ -34,7 +34,7 @@ class Traveller::HolidaysController < TravellerApplicationController
 
   # PATCH/PUT /holidays/1
   def update
-    if @holiday.update holiday_params
+    if @holiday.update(holiday_params(:skip_country => true))
       redirect_to @holiday, notice: 'Holiday was successfully updated.'
     else
       render action: 'edit'
@@ -56,7 +56,10 @@ class Traveller::HolidaysController < TravellerApplicationController
 
   private
   # Only allow a trusted parameter "white list" through.
-  def holiday_params
+  def holiday_params(opts = {})
+    #Do not allow users to change country after initial creation...
+    params[:holiday].delete(:country_id) if opts[:skip_country]
+
     params.require(:holiday).permit(:country_id, :region, :nights, :earliest_date, :latest_date, :budget, :ballpark, :adults, :children, :include_travel, :description)
   end
 end

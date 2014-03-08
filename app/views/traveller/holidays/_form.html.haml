@@ -4,7 +4,12 @@
   %fieldset
     %legend Destination
     = f.label :country
-    = f.collection_select(:country_id, ALL_COUNTRIES, :id, :name, :prompt => true)
+    -if @holiday.new_record?
+      = f.collection_select(:country_id, ALL_COUNTRIES, :id, :name, :prompt => true)
+    -else
+      %p
+        =flag_for @holiday.country
+        =@holiday.country.name
     = f.label :region
     = f.text_field :region, :placeholder => "Optional"
 
