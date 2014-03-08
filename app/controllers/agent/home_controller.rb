@@ -10,8 +10,8 @@ class Agent::HomeController < AgentApplicationController
       order( "holidays_count desc").
       limit(20)
 
-    @recent_unpitched = Holiday.unpitched_on_by(current_agent).limit(5).includes(:country)    
-    @recent_favourites = Holiday.unpitched_on_by(current_agent).in_countries(current_agent.favourite_countries.pluck(:country_id)).limit(5).includes(:country)
+    @recent_unpitched = Holiday.unpitched_on_by(current_agent).limit(5).order(:created_at => :desc).includes(:country)    
+    @recent_favourites = Holiday.unpitched_on_by(current_agent).in_countries(current_agent.favourite_countries.pluck(:country_id)).limit(5).order(:created_at => :desc).includes(:country)
 
   end
 
