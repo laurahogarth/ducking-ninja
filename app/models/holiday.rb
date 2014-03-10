@@ -8,6 +8,7 @@ class Holiday < ActiveRecord::Base
   validate :has_at_least_one_pax 
   validate :has_valid_dates
   validate :has_no_pitches
+  validate :less_than_ten_holidays
 
   #ASSOCIATIONS
   belongs_to :country
@@ -92,6 +93,12 @@ class Holiday < ActiveRecord::Base
     end
     if(latest_date < earliest_date)
       errors.add(:latest_date, "must be after earliest date")
+    end
+  end
+
+  def less_than_ten_holidays
+    if(Holiday.where(:traveller_id => self.traveller_id).count >= 10)
+      errors.add(:base, "Maximum of 10 holidays per traveller")
     end
   end
 end

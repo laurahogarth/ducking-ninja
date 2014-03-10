@@ -19,6 +19,14 @@ describe Holiday do
     subject { FactoryGirl.create(:holiday) }
     it("should have a valid factory") { expect(subject).to be_valid }
 
+    it "should limit the traveller to 10 holidays" do
+      traveller = FactoryGirl.create(:traveller)
+      10.times do
+        FactoryGirl.create(:holiday, traveller: traveller)
+      end
+      expect{ FactoryGirl.create(:holiday, traveller: traveller) }.to raise_error ActiveRecord::RecordInvalid
+    end
+
     context "Invalidatated Model" do
       after(:each) { expect(subject).to_not be_valid }
       specify("country presence") { subject.country_id = nil }
