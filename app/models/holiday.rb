@@ -1,5 +1,8 @@
 class Holiday < ActiveRecord::Base
 
+  #CONSTANTS
+  MAX_HOLIDAYS_PER_TRAVELLER = 10
+
   #VALIDATIONS
   validates_presence_of :country_id, :traveller_id, :earliest_date, :latest_date  
   validates_numericality_of :adults, :children, :greater_than_or_equal_to => 0
@@ -97,8 +100,8 @@ class Holiday < ActiveRecord::Base
   end
 
   def less_than_ten_holidays
-    if(Holiday.where(:traveller_id => self.traveller_id).count >= 10)
-      errors.add(:base, "Maximum of 10 holidays per traveller")
+    if(Holiday.where(:traveller_id => self.traveller_id).count >= MAX_HOLIDAYS_PER_TRAVELLER)
+      errors.add(:base, "Maximum of #{MAX_HOLIDAYS_PER_TRAVELLER} holidays per traveller")
     end
   end
 end

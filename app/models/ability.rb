@@ -6,6 +6,7 @@ class Ability
     if user.is_a? Traveller
       can([:read, :update_status], Pitch) { |pitch| user.pitches.ids.include? pitch.id }
       can :manage, Holiday, :traveller_id => user.id
+      cannot [:new, :create], Holiday if user.holidays.count >= Holiday::MAX_HOLIDAYS_PER_TRAVELLER    
       cannot([:edit, :update], Holiday) { |holiday| holiday.pitches.any? }
     end
 

@@ -2,7 +2,10 @@
 
 = paginate @holidays
 
-= link_to 'New Holiday', new_holiday_path, :class => :button
+- if can? :create, Holiday
+  = link_to 'New Holiday', new_holiday_path, :class => :button
+- else
+  %p You have already created #{Holiday::MAX_HOLIDAYS_PER_TRAVELLER} holidays, delete some to create more.
 
 %table
   %thead
