@@ -1,5 +1,15 @@
 %h2 Your Pitch
-%p You have pitched on a holiday to #{(@holiday.region + ", ") unless @holiday.region.blank?} #{link_to(@holiday.country.name, holidays_agent_country_path(@holiday.country.id))} for #{@holiday.adults} adults#{" and " + @holiday.children.to_s + " children" if @holiday.children > 0}.
+%p You have pitched on #{holiday_summary(@holiday)}
+
+-if cannot? :edit, @pitch
+  .panel
+    %strong The customer has already seen this pitch so it cannot be edited.
+
+%ul.button-group
+  %li= link_to 'View this Holiday', [:agent, @pitch.holiday], :class => :button
+  -if can? :edit, @pitch
+    %li= link_to 'Edit', edit_agent_holiday_pitch_path(@pitch.holiday, @pitch), :class => [:alert, :button]
+    %li= link_to 'Delete', [:agent, @pitch.holiday, @pitch], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => [:alert, :button]
 
 %p 
   %b Ref: #{@pitch.ref}
@@ -14,10 +24,6 @@
 -unless @pitch.content.blank?
   %blockquote #{@pitch.content}
 
--if can? :edit, @pitch
-  = link_to 'Edit', edit_agent_holiday_pitch_path(@pitch.holiday, @pitch), :class => [:alert, :button]
--else
-  .panel
-    %strong The customer has already seen this pitch so it cannot be edited.
-= link_to 'View this Holiday', [:agent, @pitch.holiday], :class => :button
-= link_to 'View Pitches', agent_pitches_path, :class => :button
+
+
+

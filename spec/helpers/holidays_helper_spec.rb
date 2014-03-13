@@ -7,7 +7,7 @@ describe HolidaysHelper do
     it "describes the holiday nicely" do 
       country = FactoryGirl.create(:country, :name => "Australia")
       holiday = FactoryGirl.create(:holiday, :nights => 2, :adults => 1, :children => 2, :budget => 2000, :country => country)
-      expect(helper.holiday_summary(holiday)).to eq("a holiday for 1 adults and 2 children to Australia with a budget of £2000")
+      expect(helper.holiday_summary(holiday)).to eq("2 night holiday for 1 adult and 2 children to Australia with a budget of £2000 (Ballpark)")
     end
   end
 

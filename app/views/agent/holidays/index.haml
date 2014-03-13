@@ -59,7 +59,7 @@
 
         %td= nice_date(holiday.created_at)
         %td= nice_date(holiday.updated_at)
-        %td= link_to 'Show', [:agent, holiday], :class => [:tiny, :round, :secondary, :button]
+        %td= link_to 'View', [:agent, holiday], :class => [:tiny, :secondary, :button]
 
 = paginate @holidays
 

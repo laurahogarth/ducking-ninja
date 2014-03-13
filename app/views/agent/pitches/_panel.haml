@@ -1,0 +1,9 @@
+-if @pitch
+  .panel
+    %h4 You have pitched on this holiday
+    %p Your pitch reference is #{@pitch.ref}. Your estimated price was between &pound;#{@pitch.min} and &pound;#{@pitch.max}. <strong>#{"The customer has seen this pitch." if @pitch.seen? }</strong>
+    = link_to 'Manage Pitch', [:agent, @holiday, @pitch], :class => [:tiny, :button] 
+
+-unless @holiday.open
+  %h4 This holiday is closed
+  %p The customer is not currently accepting pitches on this holiday.

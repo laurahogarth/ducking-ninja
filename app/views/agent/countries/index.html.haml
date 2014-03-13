@@ -21,5 +21,5 @@
         %td= country.iso_2
         %td= country.holidays.size
         %td= add_favourite country, :class => [:tiny, :round, :secondary, :button]
-        %td= link_to 'Show', holidays_agent_country_path(country.id), :class => [:tiny, :round, :secondary, :button]
+        %td= link_to 'View Holidays', holidays_agent_country_path(country.id), :class => [:tiny, :round, :secondary, :button]
 

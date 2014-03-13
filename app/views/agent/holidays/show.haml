@@ -2,18 +2,17 @@
   = flag_for @holiday.country
   Holiday in #{@holiday.country.name}
 
+=render("agent/pitches/panel")
+
+
 .row.collapse
   .small-6.large-6.columns
-    %ul
-      %li
-        #{pluralize(@holiday.nights, "night")} in #{(@holiday.region + ", ") unless @holiday.region.blank?} 
-        #{link_to(@holiday.country.name, holidays_agent_country_path(@holiday.country.id))} between #{@holiday.earliest_date} and #{@holiday.latest_date}.
-      %li
-        Budget is #{@holiday.ballpark? ? "in the region of" : "a maximum of"} &pound;#{@holiday.budget}, #{" not " unless @holiday.include_travel?} including travel.
-      %li
-        #{@holiday.adults} adults #{"and " + @holiday.children.to_s + " children" if @holiday.children > 0} are going.
+    %p
+      #{holiday_summary(@holiday)}
   .small-6.large-6.columns
     #map{:style => "width:100%;height:300px;border:solid 1px #DDD;"}
+  -if can? :pitch, @holiday
+    =link_to "Pitch!", pitch_agent_holiday_path(@holiday), :class => "alert button"
 
 .row
   %blockquote
@@ -21,26 +20,6 @@
 
 %br
 
--if can? :pitch, @holiday
-  =link_to "Pitch!", pitch_agent_holiday_path(@holiday), :class => "alert button"
--else
-  .panel 
-    %h4 Detail
-    -if @pitch
-      %p You have pitched on this holiday (ref: #{@pitch.ref})
-      %p Between &pound;#{@pitch.min} and &pound;#{@pitch.max}. You stated your level of expertise as being <strong>#{@pitch.expertise}. #{"The customer has seen this pitch." if @pitch.seen? }</strong>
-    -elsif !@holiday.open
-      %p The customer is no longer accepting pitches on this holiday.
-    -else
-      %p You may not pitch on this holiday.
-
-    -if @pitch
-      %ul.button-group.radius.round
-        %li= link_to 'Show', [:agent, @holiday, @pitch], :class => [:tiny, :button] 
-        -if can? :edit, @pitch
-          %li= link_to 'Edit', edit_agent_holiday_pitch_path(@holiday, @pitch), :class => [:tiny, :button]
-        %li= link_to 'Destroy', [:agent, @holiday, @pitch], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => [:tiny, :button]
-= link_to 'View Holidays', agent_holidays_path, :class => :button
 
 = content_for :top_page_js do
   =include_cdn :google_maps

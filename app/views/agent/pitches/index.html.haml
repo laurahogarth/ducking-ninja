@@ -1,6 +1,5 @@
 %h1 Listing pitches
 
-
 .row
   =form_tag find_by_ref_agent_pitches_path do
     .large-6.columns
@@ -38,12 +37,6 @@
       %td= nice_date(pitch.created_at)
       %td= pitch.ref
       %td= nice_boolean(pitch.seen?)
-      %td
-        %ul.button-group.radius.round
-          %li= link_to 'Show', [:agent, pitch.holiday, pitch], :class => [:tiny, :secondary, :button]
-          -if can? :edit, pitch
-            %li= link_to 'Edit', edit_agent_holiday_pitch_path(pitch.holiday, pitch), :class => [:tiny, :secondary, :button]
-          %li= link_to 'Destroy', [:agent, pitch.holiday, pitch], :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => [:tiny, :secondary, :button]
-          
-
+      %td= link_to 'Manage', [:agent, pitch.holiday, pitch], :class => [:tiny, :secondary, :button]
+                    
 = paginate @pitches
