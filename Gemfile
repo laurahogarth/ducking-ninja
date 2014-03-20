@@ -37,6 +37,7 @@ gem 'kaminari'
 # Dev Server Configuration
 group :development do
   gem 'thin'
+  gem 'quiet_assets'
 end
 
 # Testing

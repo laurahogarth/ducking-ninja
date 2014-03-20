@@ -26,15 +26,11 @@ class Pitch < ActiveRecord::Base
   ###########################
 
   def seen!
-    unless seen?
-      self.seen = true
-      save
-    end
+    self.update_attribute :seen, true unless seen?
   end
 
-  def update_status!(status)
-    self.status = status
-    save
+  def update_status!(new_status)
+    self.update_attribute :status, new_status
   end
 
 
