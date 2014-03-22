@@ -39,7 +39,9 @@
         %td
           =holiday.open? ? content_tag(:span, "Open", :class => [:label]) : content_tag(:span, "Closed", :class => [:alert, :label]) 
         %td 
-          =link_to 'Manage', holiday, :class => [:tiny, :secondary, :button]
-            
+          =link_to holiday, :class => [:tiny, :secondary, :button] do
+            =icon "edit"
+            Manage
+ 
 = paginate @holidays
 

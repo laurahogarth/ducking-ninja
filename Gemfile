@@ -17,6 +17,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'sass-rails', '~> 4.0.1'
 gem 'haml-rails'
 gem 'foundation-rails'
+gem 'font-awesome-sass'
 
 
 # Active Admin

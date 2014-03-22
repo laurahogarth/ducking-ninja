@@ -24,4 +24,6 @@
         %td= pitch.expertise
         %td= pitch.status
         %td 
-          =link_to 'Show', [pitch.holiday, pitch], :class => "tiny round secondary button"
+          =link_to [pitch.holiday, pitch], :class => [:tiny, :secondary, :button] do
+            =icon "eye"
+            Show

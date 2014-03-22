@@ -20,7 +20,7 @@
             = flag_for country
             = country.name
           %td= country.iso_2
-          %td= add_favourite country, :class => [:tiny, :round, :secondary, :button]
+          %td= toggle_favourite country, :class => [:tiny, :secondary, :button]
           %td= link_to 'View Holidays', holidays_agent_country_path(country.id), :class => [:tiny, :round, :secondary, :button]
 
   =paginate @countries

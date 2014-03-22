@@ -1,17 +1,19 @@
 
-%h3 Pitch from #{@agent_detail.name} (#{@pitch.ref})
-
+%h3 Pitch from #{@agent_detail.name} 
 .row.collapse
   .small-6.large-6.columns
-    %ul
-      %li 
-        The agent believes they can meet the requirements for your holiday 
-      %li 
-        The agent has specified a lower-estimate of <em>&pound;#{@pitch.min}</em> 
-      %li
-        The agent has specified an upper-estimate of <em>&pound;#{@pitch.max}</em>. 
-      %li The agent has specified their level of expertise as being "<em>#{@pitch.expertise}</em>".
-      %li The reference number for this pitch is <em>#{@pitch.ref}</em>, please quote this number should you decide to get in touch with the agent.
+    %p The agent believes they can meet the requirements for your holiday 
+
+    %dl
+      %dt Reference No
+      %dd= @pitch.ref
+      %dt Estimate
+      %dd Between &pound;#{@pitch.min} and &pound;#{@pitch.max}.
+      %dt Level of Expertise
+      %dd
+        = @pitch.expertise
+        = tooltip_icon "This indicates the level of expertise the agent says they have" 
+        
   .small-6.large-6.columns
     .panel
       #map{:style => "width:100%;height:300px;border:solid 1px #DDD;"}

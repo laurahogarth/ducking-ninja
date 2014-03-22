@@ -248,8 +248,8 @@ countries:
     iso_2:  "DO"
     name:   "Dominican Republic"
 
-  TP:
-    iso_2:  "TP"
+  TL:
+    iso_2:  "TL"
     name:   "East Timor"
 
   EC:

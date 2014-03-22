@@ -32,4 +32,9 @@ module HtmlHelper
     link_to title, { :sort_order => sort_order, :sort_column => column_name }, { :class => css_class }
   end
 
+  def tooltip_icon(text, opts = {})
+    content_tag :span, class: "has-tip", data: {tooltip: true}, title: text do
+      icon opts[:icon] || "question-circle"
+    end
+  end
 end
