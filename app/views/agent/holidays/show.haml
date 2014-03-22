@@ -7,8 +7,24 @@
 
 .row.collapse
   .small-6.large-6.columns
-    %p
-      #{holiday_summary(@holiday)}
+    %dl
+      %dt
+        Pax 
+      %dd
+        =holiday_pax_summary(@holiday)
+      %dt
+        Duration
+      %dd
+        =holiday_duration_summary(@holiday)
+      %dt
+        Budget
+      %dd
+        =holiday_budget_summary(@holiday)
+      %dt
+        Dates
+      %dd
+        =holiday_date_summary(@holiday)
+
   .small-6.large-6.columns
     #map{:style => "width:100%;height:300px;border:solid 1px #DDD;"}
   -if can? :pitch, @holiday
