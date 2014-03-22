@@ -27,18 +27,13 @@
 
   %fieldset
     %legend Budget
-    = f.label :budget, "What is the budget for your holiday?"
+    = f.label :budget, "What is the approximate budget for your holiday?"
     .row.collapse
       .small-1.large-1.columns
         %span.prefix &pound;
       .small-11.large-11.columns
         = f.number_field :budget, :min => 1
 
-    = f.radio_button(:ballpark, 1, :checked => @holiday.ballpark? )
-    = f.label :ballpark_1, "This budget represents a ballpark figure."
-    %br
-    = f.radio_button(:ballpark, 0, :checked => !@holiday.ballpark?  ) 
-    = f.label :ballpark_0, "This budget represents the absolute maximum I want to pay."
     %br
     = f.check_box :include_travel
     = f.label :include_travel, "Check this box if you also require travel"

@@ -44,8 +44,7 @@
         %td= holiday.nights
         %td= nice_date(holiday.earliest_date)
         %td= nice_date(holiday.latest_date)
-        %td
-          &pound;#{holiday.budget} <br /> (#{budget_type(holiday)})
+        %td= holiday_budget_summary(holiday)
         %td= holiday.adults
         %td= holiday.children
         -if @holiday_ids_with_pitch.include? holiday.id

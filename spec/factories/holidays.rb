@@ -9,7 +9,6 @@ FactoryGirl.define do
     earliest_date Date.current
     latest_date Date.current + 1.week
     budget 2000
-    ballpark true
     adults 2
     children 0
     include_travel false

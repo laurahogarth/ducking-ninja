@@ -60,6 +60,6 @@ class Traveller::HolidaysController < TravellerApplicationController
     #Do not allow users to change country after initial creation...
     params[:holiday].delete(:country_id) if opts[:skip_country]
 
-    params.require(:holiday).permit(:country_id, :region, :nights, :earliest_date, :latest_date, :budget, :ballpark, :adults, :children, :include_travel, :description)
+    params.require(:holiday).permit(:country_id, :region, :nights, :earliest_date, :latest_date, :budget, :adults, :children, :include_travel, :description)
   end
 end

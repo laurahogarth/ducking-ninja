@@ -15,8 +15,7 @@
       %th Earliest date
       %th Latest date
       %th Budget
-      %th Adults
-      %th Children
+      %th Passengers
       %th Pitches
       %th Status
       %th
@@ -31,10 +30,8 @@
         %td= holiday.nights
         %td= holiday.earliest_date
         %td= holiday.latest_date
-        %td
-          =raw "&pound;#{holiday.budget} (#{budget_type(holiday)})"
-        %td= holiday.adults
-        %td= holiday.children
+        %td= holiday_budget_summary(holiday)
+        %td= holiday_pax_summary(holiday)
         %td
           = holiday.pitches.size
           - if @holidays_with_unseen_pitches.include? holiday.id 

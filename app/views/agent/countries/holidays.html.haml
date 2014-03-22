@@ -27,8 +27,7 @@
         %th Earliest date
         %th Latest date
         %th Budget
-        %th Adults
-        %th Children
+        %th Pax
         %th Pitched?
         %th Pitch seen by customer?
         %th Status
@@ -41,10 +40,8 @@
           %td= holiday.nights
           %td= nice_date(holiday.earliest_date)
           %td= nice_date(holiday.latest_date)
-          %td
-            &pound;#{holiday.budget} <br /> (#{budget_type(holiday)})
-          %td= holiday.adults
-          %td= holiday.children
+          %td= holiday_budget_summary(holiday)
+          %td= holiday_pax_summary(holiday)
           -if @holiday_ids_with_pitch.include? holiday.id
             %td= nice_boolean(true)
             %td= nice_boolean(@holiday_ids_with_seen_pitch.include? holiday.id) 

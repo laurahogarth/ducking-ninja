@@ -1,14 +1,23 @@
 %h3 #{flag_for(@holiday.country)} Your Holiday in #{@holiday.country.name}
 .row.collapse
   .small-6.large-6.columns
-    %ul
-      %li
-        #{pluralize(@holiday.nights, "night")} in #{(@holiday.region + ", ") unless @holiday.region.blank?} #{@holiday.country.name} between #{@holiday.earliest_date} and #{@holiday.latest_date}.
-      %li
-        Budget is #{@holiday.ballpark? ? "in the region of" : "a maximum of"} &pound;#{@holiday.budget}, 
-        #{" not " unless @holiday.include_travel?} including travel.
-      %li
-        #{@holiday.adults} adults #{"and " + @holiday.children.to_s + " children" if @holiday.children > 0} are going.
+    %dl
+      %dt
+        Passengers 
+      %dd
+        =holiday_pax_summary(@holiday)
+      %dt
+        Duration
+      %dd
+        =holiday_duration_summary(@holiday)
+      %dt
+        Approximate Budget
+      %dd
+        =holiday_budget_summary(@holiday)
+      %dt
+        Dates
+      %dd
+        =holiday_date_summary(@holiday)
 
     %ul.button-group
       %li= link_to 'Edit', edit_holiday_path(@holiday), :class => :button if can? :edit, @holiday 

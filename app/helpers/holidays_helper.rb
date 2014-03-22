@@ -1,15 +1,10 @@
 module HolidaysHelper
 
-  def budget_type(holiday)
-    holiday.ballpark? ? "Ballpark" : "Maximum"
-  end
-
-  def holiday_summary(holiday)
-    "#{holiday.nights} night holiday for #{pluralize(holiday.adults, "adult")} and #{pluralize(holiday.children, "child")} to #{holiday.country.name} with a budget of £#{holiday.budget} (#{budget_type(holiday)})"
-  end
-
   def holiday_pax_summary(holiday)
-    "#{pluralize(holiday.adults, "adult")} and #{pluralize(holiday.children, "child")}"
+    pax = []
+    pax << pluralize(holiday.adults, "adult") if holiday.adults > 0
+    pax << pluralize(holiday.children, "child") if holiday.children > 0
+    pax.join " and "
   end
 
   def holiday_date_summary(holiday)

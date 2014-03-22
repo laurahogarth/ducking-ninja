@@ -2,25 +2,53 @@
 require "spec_helper"
 
 describe HolidaysHelper do
-  
-  describe "#holiday_summary" do
-    it "describes the holiday nicely" do 
-      country = FactoryGirl.create(:country, :name => "Australia")
-      holiday = FactoryGirl.create(:holiday, :nights => 2, :adults => 1, :children => 2, :budget => 2000, :country => country)
-      expect(helper.holiday_summary(holiday)).to eq("2 night holiday for 1 adult and 2 children to Australia with a budget of £2000 (Ballpark)")
+
+  describe "#holiday_pax_summary" do
+    context "when there are adults and children" do
+      it "displays both adults and children" do
+        holiday = FactoryGirl.build(:holiday, adults: 2, children: 2)
+        expect(helper.holiday_pax_summary(holiday)).to eq "2 adults and 2 children"
+      end
+    end
+    context "when there are no children" do
+      it "only displays the adults" do
+        holiday = FactoryGirl.build(:holiday, adults: 2, children: 0)
+        expect(helper.holiday_pax_summary(holiday)).to eq "2 adults"
+      end
+    end
+    context "when there are no adults" do
+      it "only displays the children" do
+        holiday = FactoryGirl.build(:holiday, adults: 0, children: 2)
+        expect(helper.holiday_pax_summary(holiday)).to eq "2 children"
+      end
+    end
+    context "when there is only 1 of each" do
+      it "pluralizes correctly" do
+        holiday = FactoryGirl.build(:holiday, adults: 1, children: 1)
+        expect(helper.holiday_pax_summary(holiday)).to eq "1 adult and 1 child"
+      end
     end
   end
 
-  describe "#budget_type" do
-    context "when ballpark is true" do
-      it "returns 'Ballpark'" do
-        expect(helper.budget_type(FactoryGirl.create(:holiday, :ballpark => true))).to eq "Ballpark"
+  describe "#holiday_duration_summary" do
+    context "when there is one night" do
+      it "displays 1 night" do
+        holiday = FactoryGirl.build(:holiday, nights: 1)
+        expect(helper.holiday_duration_summary(holiday)).to eq "1 night"
       end
     end
-    context "when ballpark is false" do
-      it "returns 'Max'" do
-        expect(helper.budget_type(FactoryGirl.create(:holiday, :ballpark => false))).to eq "Maximum"
+    context "when there are multiple nights" do
+      it "pluralizes correctly" do
+        holiday = FactoryGirl.build(:holiday, nights: 2)
+        expect(helper.holiday_duration_summary(holiday)).to eq "2 nights"
       end
+    end
+  end
+
+  describe  "#holiday_budget_summary" do
+    it "adds the pound sign to the beginning of the budget" do
+      holiday = FactoryGirl.build(:holiday, budget: 1000)
+      expect(helper.holiday_budget_summary(holiday)).to eq "&pound;1000"
     end
   end
 

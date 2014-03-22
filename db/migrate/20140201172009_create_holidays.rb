@@ -8,7 +8,6 @@ class CreateHolidays < ActiveRecord::Migration
       t.date :earliest_date
       t.date :latest_date
       t.integer :budget
-      t.boolean :ballpark, :default => true
       t.integer :adults, :default => 2
       t.integer :children, :default => 0
       t.boolean :include_travel, :default => true

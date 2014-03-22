@@ -4,7 +4,7 @@ describe Holiday do
   
   describe "Attributes and Associations" do
     context "Attributes" do
-      [:earliest_date, :latest_date, :budget, :adults, :children, :nights, :ballpark?, :include_travel?].each  do |method|
+      [:earliest_date, :latest_date, :budget, :adults, :children, :nights, :include_travel?].each  do |method|
         it { should respond_to method }
       end 
     end

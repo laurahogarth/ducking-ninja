@@ -30,7 +30,7 @@ unless Holiday.any?
   traveller = Traveller.first
 
   10.times do |num|
-    traveller.holidays.create(:country_id => (rand(number_of_countries) + 1), :earliest_date => (Date.current + 1.month), :latest_date => (Date.current + 2.months), :nights => (rand(25) + 1), :budget => (rand(20000)+1), :adults => rand(6)+1, :children => rand(3), :include_travel => (rand(2)==0), :ballpark => (rand(2)==0), :description => filler.generate_content )
+    traveller.holidays.create(:country_id => (rand(number_of_countries) + 1), :earliest_date => (Date.current + 1.month), :latest_date => (Date.current + 2.months), :nights => (rand(25) + 1), :budget => (rand(20000)+1), :adults => rand(6)+1, :children => rand(3), :include_travel => (rand(2)==0), :description => filler.generate_content )
   end
 else
   puts "Holidays already populated!"
