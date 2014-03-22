@@ -30,8 +30,8 @@
         %td= holiday.nights
         %td= holiday.earliest_date
         %td= holiday.latest_date
-        %td= holiday_budget_summary(holiday)
-        %td= holiday_pax_summary(holiday)
+        %td= holiday.budget_summary
+        %td= holiday.pax_summary
         %td
           = holiday.pitches.size
           - if @holidays_with_unseen_pitches.include? holiday.id 

@@ -34,6 +34,8 @@ gem 'cancancan', '~> 1.7'
 
 # Misc Plugins
 gem 'kaminari'
+gem 'draper', '~> 1.3'
+
 
 # Dev Server Configuration
 group :development do

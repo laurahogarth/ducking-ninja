@@ -40,8 +40,8 @@
           %td= holiday.nights
           %td= nice_date(holiday.earliest_date)
           %td= nice_date(holiday.latest_date)
-          %td= holiday_budget_summary(holiday)
-          %td= holiday_pax_summary(holiday)
+          %td= holiday.budget_summary
+          %td= holiday.pax_summary
           -if @holiday_ids_with_pitch.include? holiday.id
             %td= nice_boolean(true)
             %td= nice_boolean(@holiday_ids_with_seen_pitch.include? holiday.id) 

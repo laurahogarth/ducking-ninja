@@ -5,19 +5,19 @@
       %dt
         Passengers 
       %dd
-        =holiday_pax_summary(@holiday)
+        =@holiday.pax_summary
       %dt
         Duration
       %dd
-        =holiday_duration_summary(@holiday)
+        =@holiday.duration_summary
       %dt
         Approximate Budget
       %dd
-        =holiday_budget_summary(@holiday)
+        =@holiday.budget_summary
       %dt
         Dates
       %dd
-        =holiday_date_summary(@holiday)
+        =@holiday.date_summary
 
     %ul.button-group
       %li= link_to 'Edit', edit_holiday_path(@holiday), :class => :button if can? :edit, @holiday 
